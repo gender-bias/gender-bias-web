@@ -15,8 +15,10 @@
                 v-bind:class="{ visible: ishovering || hoveringLock }"
             >
                 <h1>{{message.issue.category}}</h1>
-                <p>{{message.issue.issue}}</p>
-                <p>{{message.issue.suggestion}}</p>
+                <div class="content">
+                    <p>{{message.issue.issue}}</p>
+                    <p>{{message.issue.suggestion}}</p>
+                </div>
             </div>
         </span>
     </span>
@@ -26,7 +28,7 @@
 
 <script>
 export default {
-    name: 'Readout',
+    name: 'Blurb',
     props: {
         message: {
             type: Object
@@ -85,13 +87,24 @@ a {
     width: auto;
     clear: both;
     margin: auto;
-    background: lavender;
-    padding: 1em;
+    padding: 0;
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.2s;
+    background: mix(lavender, white, 70%);
     &.visible {
         opacity: 1;
+    }
+
+    h1 {
+        font-size: 1.2em;
+        background: lavender;
+        margin-top: 0;
+        padding: 0.5em 1em;
+    }
+
+    .content {
+        padding: 0 1em;
     }
 }
 
