@@ -1,18 +1,26 @@
 <template>
     <span style="display: inline">
         <span
-            v-bind:class="{ issue: message.issue }"
+            v-bind:class="getClasses()"
             style="padding: 0 0.1em;"
             v-on:mouseover="hovered"
+            v-on:click="hoverLock"
             v-on:mouseout="unhovered"
-            v-on:mousemove="mousemove"
-        > {{ message.text }} </span>
+        >{{ message.text }}</span>
 
-        <div
-            class="tip"
-            v-bind:style="{ top: mouseX }"
-            v-bind:class="{ visible: ishovering && message.issue }"
-        >{{message.issue.issue}}</div>
+        <span v-if="message.issue">
+            <div
+                class="tip"
+                v-bind:style="{ top: mouseX }"
+                v-bind:class="{ visible: ishovering || hoveringLock }"
+            >
+                <h1>{{message.issue.category}}</h1>
+                <div class="content">
+                    <p>{{message.issue.issue}}</p>
+                    <p>{{message.issue.suggestion}}</p>
+                </div>
+            </div>
+        </span>
     </span>
 
 
@@ -20,7 +28,7 @@
 
 <script>
 export default {
-    name: 'Readout',
+    name: 'Blurb',
     props: {
         message: {
             type: Object
@@ -29,21 +37,28 @@ export default {
     data() {
         return {
             ishovering: false,
+            hoveringLock: false,
             mouseX: 30,
             mouseY: 0,
         }
     },
     methods: {
+        getClasses() {
+            return {
+                issue: this.message.issue,
+                negative: this.message.issue ? this.message.issue.bias == -1 : false,
+                positive: this.message.issue ? this.message.issue.bias == 1 : false,
+                hoveringLock: this.hoveringLock,
+            };
+        },
         hovered() {
             this.ishovering = true;
         },
         unhovered() {
             this.ishovering = false;
         },
-        mousemove(ev) {
-            this.mouseX = ev.pageX;
-            document.documentElement.style.setProperty('--mouse-x', ev.pageX);
-            this.mouseY = ev.pageY;
+        hoverLock() {
+            this.hoveringLock = !this.hoveringLock;
         },
         getPos() {
             return {
@@ -60,6 +75,7 @@ export default {
 
 $errorful: rgba(172, 0, 0, 0.845);
 $warningful: rgba(191, 94, 9, 0.845);
+$goodful: rgba(22, 125, 70, 0.845);
 
 a {
   color: #42b983;
@@ -71,22 +87,50 @@ a {
     width: auto;
     clear: both;
     margin: auto;
-    background: lavender;
-    padding: 1em;
+    padding: 0;
     opacity: 0;
+    pointer-events: none;
     transition: opacity 0.2s;
-}
-.tip.visible {
-    opacity: 1;
+    background: mix(lavender, white, 70%);
+    &.visible {
+        opacity: 1;
+    }
+
+    h1 {
+        font-size: 1.2em;
+        background: lavender;
+        margin-top: 0;
+        padding: 0.5em 1em;
+    }
+
+    .content {
+        padding: 0 1em;
+    }
 }
 
 .issue {
-    border-bottom: 1.5px dotted $errorful;
     transition: background 0.2s;
     background: none;
     cursor: pointer;
     &:hover {
         background: mix(white, $errorful, 70%);
     }
+    &.positive {
+        border-bottom: 1.5px dotted $goodful;
+    }
+    &.negative {
+        border-bottom: 1.5px dotted $errorful;
+    }
+
+    &.hoveringLock {
+        box-shadow: 0 0 0.1em rgba(100, 100, 100, 0.5);
+        background: mix(red, lavender, 5%);
+        &:after {
+            content: "🔒";
+            position: absolute;
+            margin-top: -01em;
+        }
+    }
+
 }
 </style>

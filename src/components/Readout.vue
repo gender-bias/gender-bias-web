@@ -44,7 +44,6 @@ export default {
     },
     methods: {
         renderIssues() {
-            console.log(this.inputText);
             fetch(`${URL}/check`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -58,11 +57,14 @@ export default {
                 let text = payload.text;
                 for (const issue of payload.issues) {
                     flags = flags.concat(issue.flags.map(f => {
+                        console.log(f);
                         return {
                             start: f[0],
                             end: f[1],
                             category: f[2],
                             issue: f[3],
+                            suggestion: f[4],
+                            bias: f[5],
                         }
                     }));
                 }
@@ -73,6 +75,7 @@ export default {
                 }
                 let messages = renderTextArray.join("").split("[!]");
                 this.messages = messages.map(text => {
+                    console.log(text.split("||")[1] ? flags[parseInt(text.split("||")[1])] : false);
                     return {
                         text: text.split("||")[2],
                         rnd: Math.random(),
