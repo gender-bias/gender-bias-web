@@ -1,32 +1,32 @@
 <template>
     <div id="app">
-        <h1>genderbias</h1>
+        <Header />
         <Readout />
+        <Footer />
     </div>
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld.vue';
-import Readout from './components/Readout.vue';
+import Readout from "@/components/Readout.vue";
+import Header from "@/components/Header.vue";
+import Footer from "@/components/Footer.vue";
 
 export default {
-    name: 'app',
+    name: "App",
     components: {
-        Readout,
+        Header,
+        Footer,
+        Readout
     }
-}
+};
 </script>
 
 <style>
-
-* {
-    box-sizing: border-box;
-}
 #app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    /* font-family: Avenir, Helvetica, Arial, sans-serif; */
+    font-family: "Roboto Slab", Georgia, "Times New Roman";
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    text-align: center;
     color: #2c3e50;
     margin-top: 60px;
 }

@@ -1,6 +1,4 @@
-# gender-bias-vue
-
-![gb](https://user-images.githubusercontent.com/693511/46165807-8bec4900-c25f-11e8-88f7-e9b3448a0130.gif)
+# gender-bias-web
 
 ## Project setup
 ```
@@ -9,15 +7,18 @@ yarn install
 
 ### Compiles and hot-reloads for development
 ```
-yarn run serve
+yarn serve
 ```
 
 ### Compiles and minifies for production
 ```
-yarn run build
+yarn build
 ```
 
 ### Lints and fixes files
 ```
-yarn run lint
+yarn lint
 ```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
