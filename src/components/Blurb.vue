@@ -6,7 +6,9 @@
             v-on:mouseover="hovered"
             v-on:click="hoverLock"
             v-on:mouseout="unhovered"
-        >{{ message.text }}</span>
+        >
+            {{ message.text }}
+        </span>
 
         <span v-if="message.issue">
             <div
@@ -14,41 +16,43 @@
                 v-bind:style="{ top: mouseX }"
                 v-bind:class="{ visible: ishovering || hoveringLock }"
             >
-                <h1>{{message.issue.category}}</h1>
+                <h1>{{ message.issue.category }}</h1>
                 <div class="content">
-                    <p>{{message.issue.issue}}</p>
-                    <p>{{message.issue.suggestion}}</p>
+                    <p>{{ message.issue.issue }}</p>
+                    <p>{{ message.issue.suggestion }}</p>
                 </div>
             </div>
         </span>
     </span>
-
-
 </template>
 
 <script>
 export default {
-    name: 'Blurb',
+    name: "Blurb",
     props: {
         message: {
             type: Object
-        },
+        }
     },
     data() {
         return {
             ishovering: false,
             hoveringLock: false,
             mouseX: 30,
-            mouseY: 0,
-        }
+            mouseY: 0
+        };
     },
     methods: {
         getClasses() {
             return {
                 issue: this.message.issue,
-                negative: this.message.issue ? this.message.issue.bias == -1 : false,
-                positive: this.message.issue ? this.message.issue.bias == 1 : false,
-                hoveringLock: this.hoveringLock,
+                negative: this.message.issue
+                    ? this.message.issue.bias == -1
+                    : false,
+                positive: this.message.issue
+                    ? this.message.issue.bias == 1
+                    : false,
+                hoveringLock: this.hoveringLock
             };
         },
         hovered() {
@@ -63,22 +67,21 @@ export default {
         getPos() {
             return {
                 top: this.mouseY + 200,
-                left: this.mouseX + 200,
-            }
+                left: this.mouseX + 200
+            };
         }
     }
-}
+};
 </script>
 
 
 <style lang='scss'>
-
 $errorful: rgba(172, 0, 0, 0.845);
 $warningful: rgba(191, 94, 9, 0.845);
 $goodful: rgba(22, 125, 70, 0.845);
 
 a {
-  color: #42b983;
+    color: #42b983;
 }
 
 .tip {
@@ -94,6 +97,7 @@ a {
     background: mix(lavender, white, 70%);
     &.visible {
         opacity: 1;
+        z-index: 99;
     }
 
     h1 {
@@ -104,7 +108,8 @@ a {
     }
 
     .content {
-        padding: 0 1em;
+        padding: 1em;
+        text-align: left;
     }
 }
 
@@ -131,6 +136,5 @@ a {
             margin-top: -01em;
         }
     }
-
 }
 </style>
