@@ -3,7 +3,7 @@
 <template>
     <span style="display: inline">
         <!-- The text of the blurb -->
-        <span
+        <span v-if="message.text"
             v-bind:class="getClasses()"
             style="padding: 0 0.1em;"
             v-on:mouseover="hovered"
