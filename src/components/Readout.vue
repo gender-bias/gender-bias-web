@@ -77,7 +77,7 @@ export default {
                             start: 0,
                             end: 0,
                             category: "",
-                            issue: ""
+                            problem: ""
                         }
                     ];
                     let text = payload.text;
@@ -88,7 +88,7 @@ export default {
                                     start: f[0],
                                     end: f[1],
                                     category: f[2],
-                                    issue: f[3],
+                                    problem: f[3],
                                     suggestion: f[4],
                                     bias: f[5]
                                 };

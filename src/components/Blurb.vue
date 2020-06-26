@@ -14,8 +14,8 @@
         </span>
 
         <!-- The associated tooltip should be displayed only if 
-             there is an issue with the text. -->
-        <span v-if="message.issue.issue">
+             there is a problem with the text. -->
+        <span v-if="message.issue.problem">
             <div
                 class="tip"
                 v-bind:style="{ top: mouseX }"
@@ -23,7 +23,7 @@
             >
                 <h1>{{ message.issue.category }}</h1>
                 <div class="content">
-                    <p>{{ message.issue.issue }}</p>
+                    <p>{{ message.issue.problem }}</p>
                     <p>{{ message.issue.suggestion }}</p>
                 </div>
             </div>
@@ -50,7 +50,7 @@ export default {
     methods: {
         getClasses() {
             return {
-                issue: this.message.issue.issue,
+                issue: this.message.issue.problem,
                 negative: this.message.issue
                     ? this.message.issue.bias == -1
                     : false,
