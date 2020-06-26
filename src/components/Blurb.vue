@@ -1,5 +1,8 @@
+<!-- A Blurb is a span that has styling and possibly a tooltip. -->
+
 <template>
     <span style="display: inline">
+        <!-- The text of the blurb -->
         <span
             v-bind:class="getClasses()"
             style="padding: 0 0.1em;"
@@ -10,7 +13,9 @@
             {{ message.text }}
         </span>
 
-        <span v-if="message.issue">
+        <!-- The associated tooltip should be displayed only if 
+             there is an issue with the text. -->
+        <span v-if="message.issue.issue">
             <div
                 class="tip"
                 v-bind:style="{ top: mouseX }"
@@ -45,7 +50,7 @@ export default {
     methods: {
         getClasses() {
             return {
-                issue: this.message.issue,
+                issue: this.message.issue.issue,
                 negative: this.message.issue
                     ? this.message.issue.bias == -1
                     : false,
