@@ -50,11 +50,11 @@ export default {
     methods: {
         getClasses() {
             return {
-                issue: this.message.issue.problem,
-                negative: this.message.issue
+                notice: this.message.issue.problem,
+                negativeBias: this.message.issue
                     ? this.message.issue.bias == -1
                     : false,
-                positive: this.message.issue
+                positiveBias: this.message.issue
                     ? this.message.issue.bias == 1
                     : false,
                 hoveringLock: this.hoveringLock
@@ -118,17 +118,17 @@ a {
     }
 }
 
-.issue {
+.notice {
     transition: background 0.2s;
     background: none;
     cursor: pointer;
     &:hover {
         background: mix(white, $errorful, 70%);
     }
-    &.positive {
+    &.positiveBias {
         border-bottom: 1.5px dotted $goodful;
     }
-    &.negative {
+    &.negativeBias {
         border-bottom: 1.5px dotted $errorful;
     }
 
