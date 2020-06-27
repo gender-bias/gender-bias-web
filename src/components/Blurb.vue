@@ -1,6 +1,9 @@
+<!-- A Blurb is a span that has styling and possibly a tooltip. -->
+
 <template>
     <span style="display: inline">
-        <span
+        <!-- The text of the blurb -->
+        <span v-if="message.text"
             v-bind:class="getClasses()"
             style="padding: 0 0.1em;"
             v-on:mouseover="hovered"
@@ -10,7 +13,9 @@
             {{ message.text }}
         </span>
 
-        <span v-if="message.issue">
+        <!-- The associated tooltip should be displayed only if 
+             there is a problem with the text. -->
+        <span v-if="message.issue.problem">
             <div
                 class="tip"
                 v-bind:style="{ top: mouseX }"
@@ -18,7 +23,7 @@
             >
                 <h1>{{ message.issue.category }}</h1>
                 <div class="content">
-                    <p>{{ message.issue.issue }}</p>
+                    <p>{{ message.issue.problem }}</p>
                     <p>{{ message.issue.suggestion }}</p>
                 </div>
             </div>
@@ -45,11 +50,11 @@ export default {
     methods: {
         getClasses() {
             return {
-                issue: this.message.issue,
-                negative: this.message.issue
+                notice: this.message.issue.problem,
+                negativeBias: this.message.issue
                     ? this.message.issue.bias == -1
                     : false,
-                positive: this.message.issue
+                positiveBias: this.message.issue
                     ? this.message.issue.bias == 1
                     : false,
                 hoveringLock: this.hoveringLock
@@ -113,17 +118,17 @@ a {
     }
 }
 
-.issue {
+.notice {
     transition: background 0.2s;
     background: none;
     cursor: pointer;
     &:hover {
         background: mix(white, $errorful, 70%);
     }
-    &.positive {
+    &.positiveBias {
         border-bottom: 1.5px dotted $goodful;
     }
-    &.negative {
+    &.negativeBias {
         border-bottom: 1.5px dotted $errorful;
     }
 
