@@ -5,12 +5,16 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "test": "mocha test/bootstrap.js --recursive test"
   },
   "dependencies": {
     "bulma": "^0.9.0",
+    "chai": "^4.2.0",
     "core-js": "^3.6.5",
+    "mocha": "^8.0.1",
     "node-sass": "^4.14.1",
+    "puppeteer": "^4.0.1",
     "sass-loader": "^8.0.2",
     "vue": "^2.6.11"
   },
