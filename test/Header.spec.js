@@ -10,7 +10,7 @@ describe('The header', function() {
         await page.close();
     })
 
-    it('should show the name of the app', async function() {
+    it('should show the app title', async function() {
         const HEADING_SELECTOR = 'h1.title';
         let heading;
 
@@ -20,7 +20,7 @@ describe('The header', function() {
         expect(heading).to.eql('Reading for Gender Bias');
     });
 
-    it('should include a paragraph of description after the app name', async function() {
+    it('should include a paragraph of description after the app title', async function() {
         const DESCR_SELECTOR = 'h1.title+p';
 
         await page.waitFor(DESCR_SELECTOR);
