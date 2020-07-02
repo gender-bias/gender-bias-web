@@ -1,11 +1,16 @@
 describe('A blurb', function() {
+    const TEXT = 'Some text';
+
     let page;
 
     before(async function() {
         page = await browser.newPage();
         await page.goto('http://localhost:8080');
-        // Enter some appropriate text in the textarea
-        // Click submit
+
+        await page.type(SEL_TEXTAREA, TEXT);
+
+        let button = await page.$(SEL_SUBMIT);
+        await button.click();
     });
 
     after(async function() {
