@@ -1,4 +1,9 @@
 describe('The readout', function() {
+    const SEL_TEXTAREA = 'textarea';
+    const SEL_SUBMIT = '.submit-button';
+    const SEL_BACK = '.back-button';
+    const SEL_FEEDBACK = '#feedback';
+
     let page;
 
     before(async function() {
@@ -10,19 +15,53 @@ describe('The readout', function() {
         await page.close();
     });
 
+    let checkForSingularElement = async function (selector) {
+        await page.waitFor(selector);
+        expect(await page.$$(selector)).to.have.lengthOf(1);
+    };
+
     describe('initially', function() {
-        it('should show a textarea');
+
+        it('should show one textarea', async function() {
+            await checkForSingularElement(SEL_TEXTAREA);
+        });
+
         it('should display instructions in the textarea');
-        it('should have a submit button');
+
+        it('should have a submit button', async function() {
+            await checkForSingularElement(SEL_SUBMIT);
+        });
     });
 
     describe('after clicking submit', function() {
-        it('should make a post request');
+
+        it('should make a post request', function() {
+            this.skip('This may be ugly to test without stubbing the backend server.');
+        });
     });
 
     describe('after receiving a response', function() {
-        it('should have a back button');
-        it('should show the original text');
+        const TEXT = 'Some text';
+
+        before(async function() {
+            // Enter text in the textarea
+            await page.type(SEL_TEXTAREA, TEXT);
+
+            // Click the submit button
+            let button = await page.$(SEL_SUBMIT);
+            await button.click();
+        });
+
+        it('should have a back button', async function() {
+            await checkForSingularElement(SEL_BACK);
+        });
+
+        it('should show the original text', async function() {
+            const element = await page.$(SEL_FEEDBACK);            
+            const text = await page.evaluate(element => element.textContent, element);
+            expect(text).to.equalIgnoreSpaces(TEXT);            
+        });
+        
         it('should not show the textarea');
         it('should not show the submit button');
     });

@@ -1,5 +1,5 @@
 const puppeteer = require('puppeteer');
-const { expect } = require('chai');
+const { expect } = require('chai').use(require('chai-string'));
 const _ = require('lodash');
 const globalVariables = _.pick(global, ['browser', 'expect']);
 
