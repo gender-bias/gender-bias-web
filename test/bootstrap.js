@@ -14,6 +14,11 @@ const opts = {
 before (async function () {
   global.expect = expect;
   global.browser = await puppeteer.launch();
+  global.SEL_TEXTAREA = 'textarea';
+  global.SEL_SUBMIT = '.submit-button';
+  global.SEL_BACK = '.back-button';
+  global.SEL_FEEDBACK = '#feedback';
+
 });
 
 // close browser and reset global variables

@@ -1,9 +1,4 @@
 describe('The readout', function() {
-    const SEL_TEXTAREA = 'textarea';
-    const SEL_SUBMIT = '.submit-button';
-    const SEL_BACK = '.back-button';
-    const SEL_FEEDBACK = '#feedback';
-
     let page;
 
     before(async function() {
@@ -61,7 +56,7 @@ describe('The readout', function() {
             const text = await page.evaluate(element => element.textContent, element);
             expect(text).to.equalIgnoreSpaces(TEXT);            
         });
-        
+
         it('should not show the textarea');
         it('should not show the submit button');
     });
