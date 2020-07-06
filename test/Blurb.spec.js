@@ -39,19 +39,29 @@ describe('A blurb', function() {
         expect(await page.$$(SEL_NOTICE)).to.have.lengthOf(1);
     });
     // #5 
-    it('should display a tooltip on mouseover');
+    it('should display a tooltip on mouseover', async function(){
+        await page.waitFor(SEL_TOOLTIP);
+
+        expect(await page.$(SEL_TOOLTIP)).to.not.be.undefined;
+    });
 
 
     describe('The tooltip', function() {
 
         // #6
-        it('should have a title', async function() {
+        it('should have a title', async function(){
             await page.waitFor(SEL_TOOLTIP);
 
             expect(await page.$(SEL_TOOLTIP)).to.not.be.undefined;
+
         });
         // #7
-        it('should have some further text');
+        it('should have some further text', async function(){
+            await page.waitFor(SEL_TOOLTIP);
+
+            expect(await page.$(SEL_TOOLTIP).innerText).to.not.be.null;
+
+        });
     });
 
     describe('Other text', async function() {
