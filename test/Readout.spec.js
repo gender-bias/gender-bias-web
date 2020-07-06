@@ -96,7 +96,6 @@ describe('The readout', function() {
             expect(btn).to.be.null;
         });
 
-        it('should now show the original text outside of the textarea');
     });
 
 });
