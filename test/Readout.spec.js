@@ -10,7 +10,7 @@ describe('The readout', function() {
         await page.close();
     });
 
-    let checkForSingularElement = async function (selector) {
+    let checkForSingularElement = async function(selector) {
         await page.waitFor(selector);
         expect(await page.$$(selector)).to.have.lengthOf(1);
     };
@@ -21,7 +21,10 @@ describe('The readout', function() {
             await checkForSingularElement(SEL_TEXTAREA);
         });
 
-        it('should display instructions in the textarea');
+        it('should display instructions in the textarea', async function() {
+            await page.waitFor(SEL_TEXTAREA);
+            expect(await page.$(SEL_TEXTAREA).placeholder).to.not.eql("");
+        });
 
         it('should have a submit button', async function() {
             await checkForSingularElement(SEL_SUBMIT);
@@ -52,19 +55,47 @@ describe('The readout', function() {
         });
 
         it('should show the original text', async function() {
-            const element = await page.$(SEL_FEEDBACK);            
-            const text = await page.evaluate(element => element.textContent, element);
-            expect(text).to.equalIgnoreSpaces(TEXT);            
+            const element = await page.$(SEL_FEEDBACK);
+            const text = await page.evaluate(element => element.innerText, element);
+
+            expect(text).to.include(TEXT);
         });
 
-        it('should not show the textarea');
-        it('should not show the submit button');
+        it('should not show the textarea', async function() {
+            let textArea = await page.$(SEL_TEXTAREA);
+            expect(textArea).to.be.null;
+        });
+
+        it('should not show the submit button', async function() {
+            let submitBtn = await page.$(SEL_SUBMIT);
+            expect(submitBtn).to.be.null;
+        });
     });
 
     describe('after clicking the back button', function() {
-        it('should show the textarea with the original text');
-        it('should have a submit button');
-        it('should not have a back button');
+        const TEXT = "Some text";
+        before(async function() {
+            // Click the back button
+            let button = await page.$(SEL_BACK);
+            await button.click();
+        });
+
+        it('should show the textarea with the original text', async function() {
+            const element = await page.$(SEL_TEXTAREA);
+            const text = await page.evaluate(element => element.value, element);
+
+            expect(text).to.eql(TEXT);
+        });
+
+        it('should have a submit button', async function() {
+            await checkForSingularElement(SEL_SUBMIT);
+        });
+
+        it('should not have a back button', async function() {
+            let btn = await page.$(SEL_BACK);
+            expect(btn).to.be.null;
+        });
+
         it('should now show the original text outside of the textarea');
     });
 
