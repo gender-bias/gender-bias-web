@@ -14,6 +14,7 @@
                                 <button
                                     class="button is-info is-fullwidth submit-button"
                                     v-on:click="renderIssues"
+                                    @click = 'displaySidebar()' 
                                 >
                                     Submit
                                 </button>
@@ -116,6 +117,9 @@ export default {
                     });
                     this.rendered = true;
                 });
+        },
+        displaySidebar(){
+            this.$emit('displaySidebar', true); 
         }
     }
 };
@@ -131,6 +135,7 @@ a {
 }
 
 .readout {
+    display: block;
     margin: auto;
     text-align: justify;
     white-space: pre-line;
