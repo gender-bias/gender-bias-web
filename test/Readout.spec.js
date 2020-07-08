@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 describe('The readout', function() {
     let page;
 

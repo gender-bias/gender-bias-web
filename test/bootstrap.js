@@ -1,9 +1,11 @@
+/* eslint-disable no-undef */
 const puppeteer = require('puppeteer');
 const { expect } = require('chai').use(require('chai-string'));
 const _ = require('lodash');
 const globalVariables = _.pick(global, ['browser', 'expect']);
 
 // puppeteer options
+// eslint-disable-next-line no-unused-vars
 const opts = {
     headless: false,
     slowMo: 100,
