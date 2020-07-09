@@ -1,30 +1,8 @@
 <template>
-    <div class ='container'>
+    <div id ='sidebar_container'>
         <div class = 'sidebar'> 
             <h1> Summaries and Issues </h1> 
-            <ul class = 'issues'>
-                
-                <li> issue </li>
-                <li> issue </li>
-                <li> issue </li>
-                <li> issue </li>
-                <li> issue </li>
-                <li> issue </li>
-                <li> issue </li>
-                <li> issue </li>
-                <li> issue </li>
-                <li> issue </li>
-                <li> issue </li>
-                <li> issue </li>
-                <li> issue </li>
-                <li> issue </li>
-                <li> issue </li>
-                <li> issue </li>
-                <li> issue </li>
-                <li> issue </li>
-                <li> issue </li>
-                <li> issue </li>
-                <li> issue </li>
+            <ul class = 'issues'> 
             </ul>
         </div> 
     </div> 
