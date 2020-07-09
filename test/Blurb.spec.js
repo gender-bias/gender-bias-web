@@ -18,7 +18,8 @@ describe('A blurb', function() {
     });
 
     it('should appear', async function() {
-        await page.waitFor("#container");
+        await page.waitFor(SEL_CONTAINER);
+        expect(await page.$$(SEL_CONTAINER)).to.have.lengthOf(1);
     });
     
     it('should have the style class "notice"', async function() {
@@ -27,7 +28,8 @@ describe('A blurb', function() {
     });
 
     it('should have the style class "negativeBias"', async function() {
-        await page.waitFor('.negativeBias');
+        await page.waitFor(SEL_NEGATIVEBIAS);
+        expect(await page.$$(SEL_NEGATIVEBIAS)).to.have.lengthOf(1);
     });
 
     it('should be highlighted on mouseover', async function() {
