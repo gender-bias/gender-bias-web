@@ -54,7 +54,7 @@ const URL = "http://localhost:5000";
 export default {
     name: "Readout",
     components: {
-        Blurb
+        Blurb,
     },
     data() {
         return {

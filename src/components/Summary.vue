@@ -7,7 +7,12 @@
 
 <script>
 export default {
-    
+    name: "Summary",
+    props: {
+        message: {
+            type: Object
+        }
+    },
 }
 </script>
 

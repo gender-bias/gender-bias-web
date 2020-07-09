@@ -3,6 +3,7 @@
         <div class = 'sidebar'> 
             <h1> Summaries and Issues </h1> 
             <ul class = 'issues'> 
+                <Summary /> 
             </ul>
         </div> 
     </div> 
@@ -10,7 +11,12 @@
 </template>
 
 <script>
+import Summary from './Summary.vue'; 
+
 export default {
+    components: {
+        Summary
+    }, 
     data() {
        
     }
