@@ -3,6 +3,10 @@
         <div class = 'sidebar'> 
             <h1> Summaries and Issues </h1> 
             <ul class = 'issues'>
+                
+                <li> issue </li>
+                <li> issue </li>
+                <li> issue </li>
                 <li> issue </li>
                 <li> issue </li>
                 <li> issue </li>
@@ -38,20 +42,21 @@ export default {
 <style lang = 'scss' scope>
 
 .container {
-    position: relative; 
+    position: fixed; 
     margin: 0;
 }
 
 .container .sidebar {
     position: fixed; 
-    height: 300px; 
-    width: 200px;
+    height: 100%; 
+    width: 260px;
+    top: 0;
+    left: 0;
+    z-index: 1;
     padding:0; 
     vertical-align: middle;
     display: inline-block;
-    overflow: scroll;  
-    overflow-x: hidden;
-    overflow-y: scroll; 
+    
 }
 .container .sidebar h1{
     color: black; 
@@ -71,108 +76,8 @@ export default {
 .container .sidebar ul li:hover{
     background: rgba(55, 56, 56, 0.71)
 }
-::-webkit-scrollbar {
-  -webkit-appearance: none;
-  width: 7px;
-}
-::-webkit-scrollbar-thumb {
-  border-radius: 4px;
-  background-color: rgba(0, 0, 0, .5);
-  box-shadow: 0 0 1px rgba(255, 255, 255, .5);
-}
+
 </style>
 
 
 
-
-
-
-
-
-<!-- <template>
-    <div id = "container"> 
-        <button> 
-        </button> 
-        <p> A </p>
-    </div> 
-
-</template>-->
-
-
-
-
-
-<!--
-<template> 
-    <sidebar-menu :menu ='sidebar' /> 
-
-
-</template> 
-
-
-<script>
-import { SidebarMenu } from 'vue-sidebar-menu'
-export default {
-    components: {
-        SidebarMenu
-    },
-    props: { 
-        menu: {
-            type: Array, 
-            required: true
-        },
-        collapsed: {
-            type: Boolean, 
-            default: true
-        }, 
-        width: {
-            type: String, 
-            default: '600px'
-        }, 
-        widthCollapsed: {
-            type: String, 
-            default: '40px'
-        }, 
-        rtl: {
-            type: Boolean,
-            default: false
-        }, 
-        theme: {
-            type: String, 
-            default: 'white-theme'
-        }, 
-        disableHover: {
-            type: Boolean, 
-            default: false
-        }
-    }, 
-    data() {
-        return {
-            sidebar: [ 
-                    {
-                        header: true, 
-                        title: 'Issues and Summaries', 
-                        hiddenOnCollapse: true,
-                        hidden: false
-                    }, 
-                    {
-                        href: '#', 
-                        title: 'Nidhi', 
-                        icon: 'fa fa-chart'
-                        
-                    },
-                ]
-        }
-    }
-}
-</script>
-
-
-
-<style> 
-.v-sidebar-menu.vsm_collapsed {
-    default: true; 
-}
-
-</style> 
----> 
