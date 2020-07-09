@@ -14,7 +14,7 @@
                                 <button
                                     class="button is-info is-fullwidth submit-button"
                                     v-on:click="renderIssues"
-                                    @click = 'displaySidebar()' 
+                                    @click = 'displaySidebar(); hideHeader()' 
                                 >
                                     Submit
                                 </button>
@@ -120,6 +120,9 @@ export default {
         },
         displaySidebar(){
             this.$emit('displaySidebar', true); 
+        },
+        hideHeader() {
+            this.$emit('hideHeader', false);
         }
     }
 };

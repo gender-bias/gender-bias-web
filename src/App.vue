@@ -1,11 +1,11 @@
 <template>
     <div id="app">
-        <Header />     
+        <Header v-if = 'header_status'/>     
         <div v-if ="sidebar_status">    
             <Sidebar /> 
         </div> 
         <div class = 'main_content'> 
-            <Readout @displaySidebar = '_displaySidebar(true)'> </Readout>
+            <Readout @displaySidebar = '_displaySidebar(true)' @hideHeader = '_hideHeader(false)'> </Readout>
         </div> 
         <Footer />
     </div>
@@ -27,12 +27,16 @@ export default {
     },
     data() {
         return {
-            sidebar_status: false
+            sidebar_status: false,
+            header_status: true
         }
     },
     methods: {
         _displaySidebar(data){
             this.sidebar_status = data;
+        },
+        _hideHeader(data) {
+            this.header_status = data; 
         }
     }
 };
