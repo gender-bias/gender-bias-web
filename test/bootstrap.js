@@ -20,6 +20,8 @@ before(async function() {
     global.SEL_SUBMIT = '.submit-button';
     global.SEL_BACK = '.back-button';
     global.SEL_FEEDBACK = '#feedback';
+    global.SEL_CONTAINER = '#container';
+    global.SEL_NEGATIVEBIAS = '.notice .negativeBias';
     global.SEL_TOOLTIP = 'span#tooltip h1';
     global.SEL_NOTICE = '.notice';
 
