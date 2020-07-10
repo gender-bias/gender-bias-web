@@ -1,4 +1,4 @@
-template>
+<template>
     <div class="container">
         <div class="section">
             <div class="columns">
@@ -46,72 +46,79 @@ template>
 <script>
 import Blurb from "./Blurb";
 const URL = "http://localhost:5000";
+
+//const URL = "http://localhost:5000";
+
 export default {
     name: "Readout",
     components: {
         Blurb
     },
+    props: {
+        text: { type: String }, 
+        inputText: {type: String }, 
+        messages: {type: Array }
+    },
     data() {
         return {
-            text: "",
-            inputText: "",
-            messages: [],
             rendered: false
         };
     },
     methods: {
         renderIssues() {
-            fetch(`${URL}/check`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    text: this.inputText
-                })
-            })
-                .then(res => res.json())
-                .then(payload => {
-                    let flags = [
-                        {
-                            start: 0,
-                            end: 0,
-                            category: "",
-                            problem: ""
-                        }
-                    ];
-                    let text = payload.text;
-                    for (const issue of payload.issues) {
-                        flags = flags.concat(
-                            issue.flags.map(f => {
-                                return {
-                                    start: f[0],
-                                    end: f[1],
-                                    category: f[2],
-                                    problem: f[3],
-                                    suggestion: f[4],
-                                    bias: f[5]
-                                };
-                            })
-                        );
-                    }
-                    let renderTextArray = text.split("");
-                    for (const [i, flag] of flags.entries()) {
-                        renderTextArray[flag.end] =
-                            "[!]||||" + renderTextArray[flag.end];
-                        renderTextArray[flag.start] =
-                            `[!]||${i}||` + renderTextArray[flag.start];
-                    }
-                    let messages = renderTextArray.join("").split("[!]");
-                    this.messages = messages.map(text => {
-                        return {
-                            text: text.split("||")[2],
-                            rnd: Math.random(),
-                            issue: text.split("||")[1]
-                                ? flags[parseInt(text.split("||")[1])]
-                                : false
-                        };
-                    });
-                    this.rendered = true;
-                });
+// 
+//             fetch(`${URL}/check`, {
+//                 method: "POST",
+//                 headers: { "Content-Type": "application/json" },
+//                 body: JSON.stringify({
+//                     text: this.inputText
+//                 })
+//             })
+//                 .then(res => res.json())
+//                 .then(payload => {
+//                     let flags = [
+//                         {
+//                             start: 0,
+//                             end: 0,
+//                             category: "",
+//                             problem: ""
+//                         }
+//                     ];
+//                     let text = payload.text;
+//                     for (const issue of payload.issues) {
+//                         flags = flags.concat(
+//                             issue.flags.map(f => {
+//                                 return {
+//                                     start: f[0],
+//                                     end: f[1],
+//                                     category: f[2],
+//                                     problem: f[3],
+//                                     suggestion: f[4],
+//                                     bias: f[5]
+//                                 };
+//                             })
+//                         );
+//                     }
+//                     let renderTextArray = text.split("");
+//                     for (const [i, flag] of flags.entries()) {
+//                         renderTextArray[flag.end] =
+//                             "[!]||||" + renderTextArray[flag.end];
+//                         renderTextArray[flag.start] =
+//                             `[!]||${i}||` + renderTextArray[flag.start];
+//                     }
+//                     let messages = renderTextArray.join("").split("[!]");
+//                     this.messages = messages.map(text => {
+//                         return {
+//                             text: text.split("||")[2],
+//                             rnd: Math.random(),
+//                             issue: text.split("||")[1]
+//                                 ? flags[parseInt(text.split("||")[1])]
+//                                 : false
+//                         };
+//                     });
+//                     this.rendered = true;
+//                 });
+            this.$emit('submit'); 
         }
     }
 };

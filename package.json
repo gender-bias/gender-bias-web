@@ -3,15 +3,25 @@
     "version": "0.1.0",
     "private": true,
     "scripts": {
+<<<<<<< HEAD
         "serve": "vue-cli-service serve",
         "build": "vue-cli-service build",
         "lint": "vue-cli-service lint",
         "test": "mocha test/bootstrap.js --recursive --timeout 5000 test"
+=======
+        "serve": "vue-cli-service serve --host 0.0.0.0",
+        "build": "vue-cli-service build",
+        "lint": "vue-cli-service lint",
+        "test": "mocha test/bootstrap.js --recursive test"
+>>>>>>> 6daf081f5f564f4f8f52ead96480a1870ab2c90d
     },
     "dependencies": {
         "bulma": "^0.9.0",
         "chai": "^4.2.0",
+<<<<<<< HEAD
         "chai-string": "^1.5.0",
+=======
+>>>>>>> 6daf081f5f564f4f8f52ead96480a1870ab2c90d
         "core-js": "^3.6.5",
         "mocha": "^8.0.1",
         "node-sass": "^4.14.1",
