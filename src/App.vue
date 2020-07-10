@@ -37,13 +37,7 @@ export default {
 
 <style>
 
-*{
-    padding: 0; 
-    margin: 0; 
-    box-sizing: border-box;
-    list-style: none; 
-    text-decoration: none;
-}
+
 #app {
     /* font-family: Avenir, Helvetica, Arial, sans-serif; */
     font-family: "Roboto Slab", Georgia, "Times New Roman";

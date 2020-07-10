@@ -3,56 +3,56 @@
         <div class="section">
             <div class="columns">
                 <div class="column is-8 is-offset-2">
-                    <div class="readout">
-                        <div v-if="!rendered">
-                            <textarea
-                                v-model="inputText"
-                                class="textarea text-input"
-                                placeholder="Paste your letter of recommendation here."
-                            ></textarea>
-                            <div class="btn-container">
+                    <span class = "wrapper">
+                        <div class="readout">
+                            <div v-if="!rendered">
+                                <textarea
+                                    v-model="inputText"
+                                    class="textarea text-input"
+                                    placeholder="Paste your letter of recommendation here."
+                                ></textarea>
+                                <div class="btn-container">
+                                    <button
+                                        class="button is-info is-fullwidth submit-button"
+                                        v-on:click="renderIssues" 
+                                        @click = 'Show_sidebar();hideHeader()'
+                                    >
+                                        Submit
+                                    </button>
+                                </div>
+                            </div>
+                            <div v-if="rendered">
                                 <button
-                                    class="button is-info is-fullwidth submit-button"
-                                    v-on:click="renderIssues" 
-                                    @click = 'Show_sidebar();hideHeader()'
+                                    class="button is-primary is-fullwidth"
+                                    v-on:click="
+                                        () => {
+                                        rendered = false;
+                                        }
+                                    "
                                 >
-                                    Submit
+                                    &leftarrow; Again!
                                 </button>
+                                <Blurb
+                                    v-for="message in messages"
+                                    :key="message.rnd"
+                                    :message="message"
+                                />
                             </div>
                         </div>
-                        <div v-if="rendered">
-                            <button
-                                class="button is-primary is-fullwidth"
-                                v-on:click="
-                                    () => {
-                                        rendered = false;
-                                    }
-                                "
-                            >
-                                &leftarrow; Again!
-                            </button>
-                            <Blurb
-                                v-for="message in messages"
-                                :key="message.rnd"
-                                :message="message"
-                            />
+                        <div class ='sidebar_container' v-if = 'sidebar_status'>
+                            <div class = 'sidebar'> 
+                                <h1> Summaries and Issues </h1> 
+                                <Summary v-for="message in messages"
+                                :key="message.rnd" :message ="message" />
+                        
+                            </div> 
                         </div>
-                    </div>
+                    </span> 
                 </div>
             </div>
         </div>
-        <div id ='sidebar_container' v-if = 'sidebar_status'>
-                <div class = 'sidebar'> 
-                    <h1> Summaries and Issues </h1> 
-                    <ol class = 'issues'> 
-                        <li v-for="message in messages"
-                            :key="message.rnd">
-
-                            <Summary :message ="message" />
-                        </li>
-                    </ol>
-                </div> 
-        </div> 
+        
+        
     </div>
     
 </template>
@@ -157,6 +157,16 @@ a {
     font-family: Avenir, Helvetica, Arial, sans-serif;
     font-size: 12pt;
     min-height: 40vh !important;
+}
+.sidebar_container {
+    display: block;
+}
+.readout {
+    display: block;
+}
+.wrapper {
+    display: inline;
+
 }
 #sidebar_container  .sidebar h1 {
     text-align: center;
