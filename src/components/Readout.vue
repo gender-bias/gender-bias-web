@@ -1,4 +1,4 @@
-<template>
+template>
     <div class="container">
         <div class="section">
             <div class="columns">
@@ -14,7 +14,6 @@
                                 <button
                                     class="button is-info is-fullwidth submit-button"
                                     v-on:click="renderIssues"
-                                    @click = 'displaySidebar(); hideHeader()' 
                                 >
                                     Submit
                                 </button>
@@ -22,7 +21,7 @@
                         </div>
                         <div v-if="rendered">
                             <button
-                                class="button is-primary is-fullwidth back-button"
+                                class="button is-primary is-fullwidth"
                                 v-on:click="
                                     () => {
                                         rendered = false;
@@ -31,13 +30,11 @@
                             >
                                 &leftarrow; Again!
                             </button>
-                            <div id="feedback">
-                                <Blurb
-                                    v-for="message in messages"
-                                    :key="message.rnd"
-                                    :message="message"
-                                />
-                            </div>
+                            <Blurb
+                                v-for="message in messages"
+                                :key="message.rnd"
+                                :message="message"
+                            />
                         </div>
                     </div>
                 </div>
@@ -48,13 +45,11 @@
 
 <script>
 import Blurb from "./Blurb";
-
 const URL = "http://localhost:5000";
-
 export default {
     name: "Readout",
     components: {
-        Blurb,
+        Blurb
     },
     data() {
         return {
@@ -117,12 +112,6 @@ export default {
                     });
                     this.rendered = true;
                 });
-        },
-        displaySidebar(){
-            this.$emit('displaySidebar', true); 
-        },
-        hideHeader() {
-            this.$emit('hideHeader', false);
         }
     }
 };
@@ -132,18 +121,14 @@ export default {
 <style lang="scss">
 $errorful: rgba(172, 0, 0, 0.845);
 $warningful: rgba(191, 94, 9, 0.845);
-
 a {
     color: #42b983;
 }
-
 .readout {
-    display: block;
     margin: auto;
     text-align: justify;
     white-space: pre-line;
 }
-
 .text-input {
     padding: 1em;
     font-family: Avenir, Helvetica, Arial, sans-serif;

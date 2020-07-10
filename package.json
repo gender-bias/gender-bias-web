@@ -3,38 +3,21 @@
     "version": "0.1.0",
     "private": true,
     "scripts": {
-<<<<<<< HEAD
         "serve": "vue-cli-service serve",
         "build": "vue-cli-service build",
         "lint": "vue-cli-service lint",
         "test": "mocha test/bootstrap.js --recursive --timeout 5000 test"
     },
     "dependencies": {
-        "@jeremyhamm/vue-slider": "^0.2.0",
         "bulma": "^0.9.0",
         "chai": "^4.2.0",
         "chai-string": "^1.5.0",
-=======
-        "serve": "vue-cli-service serve --host 0.0.0.0",
-        "build": "vue-cli-service build",
-        "lint": "vue-cli-service lint",
-        "test": "mocha test/bootstrap.js --recursive test"
-    },
-    "dependencies": {
-        "bulma": "^0.9.0",
-        "chai": "^4.2.0",
->>>>>>> 89a613480ad52ae74339d396f8cc20a6ba85b3ba
         "core-js": "^3.6.5",
         "mocha": "^8.0.1",
         "node-sass": "^4.14.1",
         "puppeteer": "^4.0.1",
         "sass-loader": "^8.0.2",
-<<<<<<< HEAD
-        "vue": "^2.6.11",
-        "vue-sidebar-menu": "^4.6.1"
-=======
         "vue": "^2.6.11"
->>>>>>> 89a613480ad52ae74339d396f8cc20a6ba85b3ba
     },
     "devDependencies": {
         "@vue/cli-plugin-babel": "~4.4.0",
@@ -64,8 +47,4 @@
         "last 2 versions",
         "not dead"
     ]
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 89a613480ad52ae74339d396f8cc20a6ba85b3ba

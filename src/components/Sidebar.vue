@@ -3,7 +3,9 @@
         <div class = 'sidebar'> 
             <h1> Summaries and Issues </h1> 
             <ul class = 'issues'> 
-                <Summary /> 
+                <Summary v-for="message in messages"
+                        :key="message.rnd"
+                        :message="message" /> 
             </ul>
         </div> 
     </div> 
@@ -17,6 +19,12 @@ export default {
     components: {
         Summary
     }, 
+    props: {
+        text: {type: String}, 
+        inputText: {type: String},
+        messages: {type: Array}
+
+    },
     data() {
        
     }
