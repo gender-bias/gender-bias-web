@@ -2,14 +2,14 @@
     <div id="app">
         <Header v-if = 'header_status'/>     
         <div class = 'main_content'> 
-            <Readout @hideHeader = '_hideHeader(false)'> </Readout>
+            <Main @hideHeader = '_hideHeader(false)'> </Main>
         </div> 
         <Footer />
     </div>
 </template>
 
 <script>
-import Readout from "@/components/Readout.vue";
+import Main from "@/components/Main.vue";
 import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
 
@@ -19,7 +19,7 @@ export default {
     components: {
         Header,
         Footer,
-        Readout
+        Main
     },
     data() {
         return {
