@@ -1,7 +1,9 @@
 <template>
     <div id = 'summary'>
-        <h1> {{message.issue.problem }}</h1>
-        <p> {{message.text}} </p> 
+        <div class = 'issue'>
+            <p class = 'problem'> &nbsp; {{message.issue.problem }} </p>
+            <p class = 'suggestion'> &nbsp; {{message.issue.suggestion}} </p>
+        </div> 
     </div> 
 
 </template>
@@ -18,5 +20,8 @@ export default {
 </script>
 
 <style scoped>
-
+.issue:hover {
+    background: rgb(98, 176, 240); 
+    color: white; 
+}
 </style>
