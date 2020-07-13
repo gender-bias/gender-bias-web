@@ -11,15 +11,11 @@ describe('The readout', function() {
         await page.close();
     });
 
-    let checkForSingularElement = async function(selector) {
-        await page.waitFor(selector);
-        expect(await page.$$(selector)).to.have.lengthOf(1);
-    };
-
     describe('initially', function() {
 
         it('should show one textarea', async function() {
-            await checkForSingularElement(SEL_TEXTAREA);
+            await page.waitFor(SEL_TEXTAREA);
+            expect(await page.$$(SEL_TEXTAREA)).to.have.lengthOf(1);
         });
 
         it('should display instructions in the textarea', async function() {
@@ -28,7 +24,8 @@ describe('The readout', function() {
         });
 
         it('should have a submit button', async function() {
-            await checkForSingularElement(SEL_SUBMIT);
+            await page.waitFor(SEL_SUBMIT);
+            expect(await page.$$(SEL_SUBMIT)).to.have.lengthOf(1);
         });
     });
 
@@ -43,16 +40,15 @@ describe('The readout', function() {
         const TEXT = 'Some text';
 
         before(async function() {
-            // Enter text in the textarea
             await page.type(SEL_TEXTAREA, TEXT);
 
-            // Click the submit button
-            let button = await page.$(SEL_SUBMIT);
+            const button = await page.$(SEL_SUBMIT);
             await button.click();
         });
 
         it('should have a back button', async function() {
-            await checkForSingularElement(SEL_BACK);
+            await page.waitFor(SEL_BACK);
+            expect(await page.$$(SEL_BACK)).to.have.lengthOf(1);
         });
 
         it('should show the original text', async function() {
@@ -63,21 +59,21 @@ describe('The readout', function() {
         });
 
         it('should not show the textarea', async function() {
-            let textArea = await page.$(SEL_TEXTAREA);
+            const textArea = await page.$(SEL_TEXTAREA);
             expect(textArea).to.be.null;
         });
 
         it('should not show the submit button', async function() {
-            let submitBtn = await page.$(SEL_SUBMIT);
+            const submitBtn = await page.$(SEL_SUBMIT);
             expect(submitBtn).to.be.null;
         });
     });
 
     describe('after clicking the back button', function() {
         const TEXT = "Some text";
+
         before(async function() {
-            // Click the back button
-            let button = await page.$(SEL_BACK);
+            const button = await page.$(SEL_BACK);
             await button.click();
         });
 
@@ -89,11 +85,12 @@ describe('The readout', function() {
         });
 
         it('should have a submit button', async function() {
-            await checkForSingularElement(SEL_SUBMIT);
+            await page.waitFor(SEL_SUBMIT);
+            expect(await page.$$(SEL_SUBMIT)).to.have.lengthOf(1);
         });
 
         it('should not have a back button', async function() {
-            let btn = await page.$(SEL_BACK);
+            const btn = await page.$(SEL_BACK);
             expect(btn).to.be.null;
         });
 

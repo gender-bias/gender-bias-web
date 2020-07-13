@@ -9,7 +9,7 @@ describe('A blurb', function() {
         await page.goto('http://localhost:8080');
         await page.type(SEL_TEXTAREA, TEXT);
 
-        let button = await page.$(SEL_SUBMIT);
+        const button = await page.$(SEL_SUBMIT);
         await button.click();
     });
 
@@ -19,7 +19,7 @@ describe('A blurb', function() {
 
     it('should appear', async function() {
         await page.waitFor(SEL_CONTAINER);
-        expect(await page.$$(SEL_CONTAINER)).to.have.lengthOf(1);
+        expect(await page.$(SEL_CONTAINER)).to.exist;
     });
 
     it('should have the style class "notice"', async function() {
@@ -57,16 +57,15 @@ describe('A blurb', function() {
     });
 
 
-
     describe('Other text', async function() {
         let SEL_UNFLAGGED;
 
         before(async function() {
 
-            const SEL_UNFLAGGED = await page.evaluate(() => {
-                const string = 'Some';
-                const selector = '#feedback #container';
-                let containers = document.querySelectorAll(selector);
+            SEL_UNFLAGGED = await page.evaluate(() => {
+                const string = 'Some',
+                    selector = '#feedback #container',
+                    containers = document.querySelectorAll(selector);
 
                 //finds container that contains string that should not be flagged
                 for (let container of containers) {
