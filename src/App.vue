@@ -37,6 +37,9 @@ export default {
 
 <style>
 
+*{
+    margin: 0 auto; 
+}
 
 #app {
     /* font-family: Avenir, Helvetica, Arial, sans-serif; */

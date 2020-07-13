@@ -1,4 +1,4 @@
-describe('The readout', function() {
+describe('The Main', function() {
     let page;
 
     before(async function() {
@@ -97,5 +97,42 @@ describe('The readout', function() {
         });
 
     });
+    describe('The Sidebar', function() {
+           
+        describe('intially', function() {
+    
+            it('it should be hidden when we start the server', async function(){
+                let sidebar = page.$(SEL_SIDEBAR);
+            });
+            it('it should have the textArea with big size', async function() {
+            
+            });
+        });
+    
+        describe('After submission', function() {
+            
+            it('it should appear', async function() {
+    
+            });
+    
+            it('it should have Summary Component(s)', async function() {
+    
+            });
+            it('it should have the correct number of Summary Component(s)', async function(){
+            //     let summaries = []; 
+            //     let number_of_summaries = 0; 
+            //     let test = await page.evaluate( () => {
+            //     summaries = document.querySelectorAll(SEL_SUMMARY); 
+            //     number_of_summaries = await page.$(SEL_SUMMARY); 
+            //     });
+            //     expect(number_of_summaries === summaries.length).to.be.true; 
+            }); 
+            it('it should change the width of the textarea', async function() {
 
+            }); 
+            it('it should make the sidebar inline with the textArea', async function() {
+
+            }); 
+        }); 
+    });
 });
