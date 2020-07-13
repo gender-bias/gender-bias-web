@@ -43,6 +43,7 @@ To set up the project, install a package manager such as yarn or npm.
 yarn install
 ```
 Or 
+
 ```
 npm install
 ​
@@ -57,6 +58,7 @@ yarn serve /npm run server
 yarn build
 ```
 
+
 ### Testing
 
 To run the entire test suite, run `yarn test` / `npm test`
@@ -64,6 +66,9 @@ To run the entire test suite, run `yarn test` / `npm test`
 To perform a single test run `yarn test --grep 'test name'`/ `npm test -- --grep 'test name'` specifying the name of the test you wish to run.
 
 ​You can find the tests in the `test` directory. The `.spec.js` files are called by the `bootstrap.js` file via the command line. 
+
+
+​
 
 *To lint and fix files*:
 ​
