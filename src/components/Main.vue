@@ -83,7 +83,7 @@ export default {
             this.sidebar_status = true; 
         },
         hideHeader() {
-            this.$emit('hideHeader', false); 
+            this.$emit('hideHeader'); 
         },
         renderIssues() {
             fetch(`${URL}/check`, {
@@ -149,6 +149,10 @@ $warningful: rgba(191, 94, 9, 0.845);
 a {
     color: #42b983;
 }
+.container {
+    margin: 0 auto; 
+    position: relative; 
+}
 .readout {
     margin: auto;
     text-align: justify;
@@ -165,11 +169,11 @@ a {
     font-size: 14px; 
     margin: 0 auto; 
     margin-right: 15pt; 
+    border: 1px; 
     display: block; 
     height: 500px; 
     vertical-align: middle; 
     padding: 20px;
-    position: relative; 
     overflow: scroll; 
     float: left; 
     overflow-x: hidden; 
