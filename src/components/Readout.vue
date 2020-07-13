@@ -21,7 +21,7 @@
                         </div>
                         <div v-if="rendered">
                             <button
-                                class="button is-primary is-fullwidth"
+                                class="button is-primary is-fullwidth back-button"
                                 v-on:click="
                                     () => {
                                         rendered = false;
@@ -30,11 +30,13 @@
                             >
                                 &leftarrow; Again!
                             </button>
-                            <Blurb
-                                v-for="message in messages"
-                                :key="message.rnd"
-                                :message="message"
-                            />
+                            <div id="feedback">
+                                <Blurb
+                                    v-for="message in messages"
+                                    :key="message.rnd"
+                                    :message="message"
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>
