@@ -29,13 +29,6 @@ describe('The readout', function() {
         });
     });
 
-    describe('after clicking submit', function() {
-
-        it('should make a post request', function() {
-            this.skip('This may be ugly to test without stubbing the backend server.');
-        });
-    });
-
     describe('after receiving a response', function() {
         const TEXT = 'Some text';
 
