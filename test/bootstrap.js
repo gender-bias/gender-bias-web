@@ -24,6 +24,7 @@ before(async function() {
     global.SEL_NEGATIVEBIAS = '.notice.negativeBias';
     global.SEL_TOOLTIP = 'span#tooltip h1';
     global.SEL_NOTICE = '.notice';
+    global.TEXT = "Some willing text";
 
 });
 

@@ -4,6 +4,7 @@
     "private": true,
     "scripts": {
         "serve": "vue-cli-service serve --host 0.0.0.0",
+        "test-serve": "vue-cli-service serve --mode test",
         "build": "vue-cli-service build",
         "lint": "vue-cli-service lint",
         "test": "mocha test/bootstrap.js --recursive --timeout 5000 test"

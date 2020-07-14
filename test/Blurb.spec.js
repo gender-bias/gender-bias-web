@@ -1,6 +1,5 @@
 /* eslint-disable no-undef */
 describe('A blurb', function() {
-    const TEXT = 'Some willing text';
 
     let page;
 
