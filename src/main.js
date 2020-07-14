@@ -21,7 +21,6 @@ const RESPONSE = {
     'text': 'Some willing text'
 };
 
-
 if (process.env.NODE_ENV === "test") {
     new Server({
 
