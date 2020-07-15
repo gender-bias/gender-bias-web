@@ -43,10 +43,10 @@
                         </div> 
                         <div class ='sidebar_container' v-if = 'sidebar_status'>
                             <div class = 'sidebar'> 
-                                <h1> Summaries and Issues </h1> 
-                                <Summary v-for="message in messages"
-                                :key="message.rnd" :message ="message" />
-                        
+                                <h1> Try making the following changes: </h1> 
+                                <Summary v-for="summary in summaries"
+                                 :key= "summary.rnd"
+                                 :summary ="summary" />
                             </div> 
                         </div>
                     </span> 
@@ -74,8 +74,10 @@ export default {
             text: "",
             inputText: "",
             messages: [],
+            summaries: [],
             rendered: false,
             sidebar_status: false
+
         };
     },
     methods: {
@@ -86,6 +88,7 @@ export default {
             this.$emit('hideHeader'); 
         },
         renderIssues() {
+            this.rendered = true;
             fetch(`${URL}/check`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -95,6 +98,7 @@ export default {
             })
                 .then(res => res.json())
                 .then(payload => {
+                    let issues = [];
                     let flags = [
                         {
                             start: 0,
@@ -105,6 +109,7 @@ export default {
                     ];
                     let text = payload.text;
                     for (const issue of payload.issues) {
+                        issues = issues.concat(issue);
                         flags = flags.concat(
                             issue.flags.map(f => {
                                 return {
@@ -133,9 +138,15 @@ export default {
                             issue: text.split("||")[1]
                                 ? flags[parseInt(text.split("||")[1])]
                                 : false
+                        }
+                    });
+                    this.summaries = issues.map(issue => {
+                        return { 
+                            text: issue.summary,
+                            title: issue.name,
+                            rnd: Math.random()
                         };
                     });
-                    this.rendered = true;
                 });
         }
     }

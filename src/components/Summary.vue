@@ -1,8 +1,9 @@
 <template>
     <div id = 'summary'>
-        <div class = 'issue' v-if = "message.issue.problem.length >= 2">
-            <p class = 'problem'> <strong> — </strong>  &nbsp; {{message.issue.problem }} </p>
-            <p class = 'suggestion'> &nbsp; {{message.issue.suggestion}} </p>
+        <div class = 'issue' v-if = "summary.text.length >= 2" >
+            <h3> {{summary.title}} </h3> 
+            <p class = 'summary'> <strong> — </strong>  &nbsp; {{summary.text}} </p>
+            <!--<p class = 'suggestion'> &nbsp; {{message.issue.suggestion}} </p>-->
         </div> 
     </div> 
 
@@ -12,8 +13,8 @@
 export default {
     name: "Summary",
     props: {
-        message: {
-            type: Object
+        summary: {
+            type: String
         }
     },
 }
