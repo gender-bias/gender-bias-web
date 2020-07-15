@@ -46,8 +46,8 @@
                         </div> 
                         <div class ='sidebar_container' v-if = 'sidebar_status'>
                             <div class = 'sidebar'> 
-                                <h1> Try making the following changes: </h1> 
-                                <Summary class = 'summary' v-for="summary in summaries"
+                                <p> Try to make the following changes: </p> 
+                                <Summary v-for="summary in summaries"
                                  :key= "summary.rnd"
                                  :summary ="summary" />
                             </div> 
@@ -167,7 +167,7 @@ export default {
 $errorful: rgba(172, 0, 0, 0.845);
 $warningful: rgba(191, 94, 9, 0.845);
 a {
-    color: #42b983;
+    color: #015c5f;
 }
 .container {
     margin: 0 auto; 
@@ -186,8 +186,7 @@ a {
     min-height: 40vh !important;
 }
 .sidebar_container {
-    width: 175px; 
-    font-size: 14px; 
+    width: 200px; 
     margin-right: 10px;
     border: 1px; 
     vertical-align: middle; 
@@ -196,9 +195,6 @@ a {
     overflow: scroll; 
     float: left; 
     overflow-x: hidden; 
-}
-.summary {
-    width: 150px; 
 }
 .readout_container {
     float: right; 
@@ -209,9 +205,12 @@ a {
     text-align: center; 
     display: inline-block;
 }
-#sidebar_container  .sidebar h1 {
+#sidebar_container   {
+    font-size: 8pt; 
     text-align: center;
-    font-size: 16pt; 
 }
 
+.button {
+    margin-bottom: 15px; 
+}
 </style>

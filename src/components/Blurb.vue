@@ -86,7 +86,7 @@ $warningful: rgba(191, 94, 9, 0.845);
 $goodful: rgba(22, 125, 70, 0.845);
 
 a {
-    color: #42b983;
+    color: #42b1b9;
 }
 
 .tip {
