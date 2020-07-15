@@ -25,6 +25,8 @@ before(async function() {
     global.SEL_NEGATIVEBIAS = '.negativeBias';
     global.SEL_TOOLTIP = 'span#tooltip h1';
     global.SEL_NOTICE = '.notice';
+    global.SEL_SIDEBAR_CONTAINER= '.sidebar_container';
+    global.SEL_ISSUE_P='.issue p';
 
 });
 
