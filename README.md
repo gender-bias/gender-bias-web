@@ -2,10 +2,7 @@
 ## Table of contents 
 * [Introduction](#Introduction)
 * [Technologies](#Technologies)
-* [Installation and Usage](#Installation)
-* [Resources](#Resources)
-* [Features](#Features)
-* [Limitations](#Limitations) 
+* [Installation and Usage](#Installation) 
 * [Credits](#Credits) 
 
 
