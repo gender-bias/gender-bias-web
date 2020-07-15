@@ -3,9 +3,6 @@
 * [Introduction](#Introduction)
 * [Technologies](#Technologies)
 * [Installation and Usage](#Installation)
-* [Resources](#Resources)
-* [Features](#Features)
-* [Limitations](#Limitations) 
 * [Credits](#Credits) 
 
 
