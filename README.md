@@ -7,8 +7,8 @@
 
 
 ## Introduction
-    This project is a web-based user interface for [Reading for Gender Bias](https://github.com/glam-lab/gender-bias). 
-    This project is currently under active development by member of the GLAM Lab at Whitman College to create an accessible tool. 
+This project is a web-based user interface for [Reading for Gender Bias](https://github.com/glam-lab/gender-bias). 
+This project is currently under active development by member of the GLAM Lab at Whitman College to create an accessible tool. 
 
 ## Technologies
 * [Vue Framework](https://vuejs.org/v2/guide/#:~:text=Vue%20(pronounced%20%2Fvju%CB%90%2F%2C,up%20to%20be%20incrementally%20adoptable.)
