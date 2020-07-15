@@ -3,7 +3,6 @@
         <div class = 'issue' v-if = "summary.text.length >= 2" >
             <h4> <strong> {{summary.title}} </strong> </h4> 
             <p class = 'summary'>  &nbsp; {{summary.text}} </p>
-            <!--<p class = 'suggestion'> &nbsp; {{message.issue.suggestion}} </p>-->
         </div> 
     </div> 
 
@@ -14,7 +13,7 @@ export default {
     name: "Summary",
     props: {
         summary: {
-            type: String
+            type: Object
         }
     },
 }
@@ -22,7 +21,7 @@ export default {
 
 <style scoped>
 .issue {
-    border: 1px solid; 
+    border: 0.5px solid; 
     border-color: grey; 
     margin-top: 3px; 
     margin-bottom: 3px; 

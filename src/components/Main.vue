@@ -9,6 +9,7 @@
                                 <div v-if="!rendered">
                                     <textarea
                                         v-model="inputText"
+                                        v-bind:style="{width: widthVal}"
                                         class="textarea text-input"
                                         placeholder="Paste your letter of recommendation here."
                                     ></textarea>
@@ -16,7 +17,7 @@
                                         <button
                                             class="button is-info is-fullwidth submit-button"
                                             v-on:click="renderIssues" 
-                                            @click = 'Show_sidebar(); hideHeader()'
+                                            @click = "Show_sidebar(); hideHeader(); changeWidth()"
                                         >
                                             Submit
                                         </button>
@@ -33,18 +34,20 @@
                                     >
                                         &leftarrow; Again!
                                     </button>
-                                    <Blurb
+                                    <div class = 'blurbs' v-bind:style="{width: widthVal}">
+                                        <Blurb
                                         v-for="message in messages"
                                         :key="message.rnd"
                                         :message="message"
-                                    />
+                                        />
+                                    </div>
                                 </div>
                             </div>
                         </div> 
                         <div class ='sidebar_container' v-if = 'sidebar_status'>
                             <div class = 'sidebar'> 
                                 <h1> Try making the following changes: </h1> 
-                                <Summary v-for="summary in summaries"
+                                <Summary class = 'summary' v-for="summary in summaries"
                                  :key= "summary.rnd"
                                  :summary ="summary" />
                             </div> 
@@ -64,7 +67,7 @@ import Blurb from "./Blurb";
 import Summary from "./Summary.vue"
 const URL = "http://localhost:5000";
 export default {
-    name: "Readout",
+    name: "Main",
     components: {
         Blurb,
         Summary
@@ -76,7 +79,8 @@ export default {
             messages: [],
             summaries: [],
             rendered: false,
-            sidebar_status: false
+            sidebar_status: false,
+            widthVal: '700px'
 
         };
     },
@@ -86,6 +90,11 @@ export default {
         },
         hideHeader() {
             this.$emit('hideHeader'); 
+        },
+        changeWidth(){
+            if (this.widthVal === '700px'){
+                this.widthVal ='425px';
+            }
         },
         renderIssues() {
             this.rendered = true;
@@ -163,6 +172,7 @@ a {
 .container {
     margin: 0 auto; 
     position: relative; 
+    width: 100%; 
 }
 .readout {
     margin: auto;
@@ -176,31 +186,27 @@ a {
     min-height: 40vh !important;
 }
 .sidebar_container {
-    width: 25%; 
+    width: 175px; 
     font-size: 14px; 
-    margin: 0 auto; 
-    margin-right: 15pt; 
+    margin-right: 10px;
     border: 1px; 
-    display: block; 
-    height: 500px; 
     vertical-align: middle; 
+    height: 500px; 
     padding: 20px;
     overflow: scroll; 
     float: left; 
     overflow-x: hidden; 
 }
+.summary {
+    width: 150px; 
+}
 .readout_container {
-    width: 70%;
     float: right; 
-    margin: 5px auto; 
     padding: 10px; 
-    display: block; 
 }
 .wrapper {
-    margin: 0 auto;
     width: 100%; 
     text-align: center; 
-    vertical-align: middle; 
     display: inline-block;
 }
 #sidebar_container  .sidebar h1 {

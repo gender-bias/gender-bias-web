@@ -37,9 +37,7 @@ export default {
 
 <style>
 
-*{
-    margin: 0 auto; 
-}
+
 
 #app {
     /* font-family: Avenir, Helvetica, Arial, sans-serif; */
@@ -50,6 +48,7 @@ export default {
     margin: 30px;
 }
 .main_content {
-     margin-left: 50px;
+     width: 100%; 
+     margin-left: 20px; 
 }   
 </style>
