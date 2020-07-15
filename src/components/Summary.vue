@@ -1,8 +1,8 @@
 <template>
     <div id = 'summary'>
         <div class = 'issue' v-if = "summary.text.length >= 2" >
-            <h3> {{summary.title}} </h3> 
-            <p class = 'summary'> <strong> — </strong>  &nbsp; {{summary.text}} </p>
+            <h4> <strong> {{summary.title}} </strong> </h4> 
+            <p class = 'summary'>  &nbsp; {{summary.text}} </p>
             <!--<p class = 'suggestion'> &nbsp; {{message.issue.suggestion}} </p>-->
         </div> 
     </div> 
