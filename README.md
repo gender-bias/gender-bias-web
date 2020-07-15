@@ -11,7 +11,7 @@ This project is a web-based user interface for [Reading for Gender Bias](https:/
 This project is currently under active development by member of the GLAM Lab at Whitman College to create an accessible tool. 
 
 ## Technologies
-* [Vue Framework](https://vuejs.org/v2/guide/#:~:text=Vue%20(pronounced%20%2Fvju%CB%90%2F%2C,up%20to%20be%20incrementally%20adoptable.)
+* [Vue Framework](https://vuejs.org/v2/guide/#:~:text=Vue%20(pronounced%20%2Fvju%CB%90%2F%2C,up%20to%20be%20incrementally%20adoptable))
 * [Puppeteer, mocha, chai](https://medium.com/@ankit_m/ui-testing-with-puppeteer-and-mocha-part-1-getting-started-b141b2f9e21) for testing. 
 * [yarn](https://classic.yarnpkg.com/en/docs/)/[npm](https://docs.npmjs.com/) as package managers 
 
@@ -22,7 +22,7 @@ git clone https://github.com/gender-bias/gender-bias
 cd gender-bias
 pip3 install -e .
 ```
-> NOTE: The last line in the above snippet installs this library in "editable" mode, which is probably fine while the library is in a state of flux.
+NOTE: The last line in the above snippet installs this library in "editable" mode, which is probably fine while the library is in a state of flux.
 
 ### Package Managers to run the project 
 To set up the project, install a package manager such as yarn or npm.
@@ -41,7 +41,7 @@ yarn add Vue / npm install vue
 yarn serve /npm run server
 yarn build
 ```
-*To lint and fix files*:
+To lint and fix files:
 ```
 yarn lint
 ```
