@@ -99,7 +99,7 @@ a {
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.2s;
-    background: mix(lavender, white, 70%);
+    background: mix(lavender, rgb(255, 255, 255), 70%);
     &.visible {
         opacity: 1;
         z-index: 99;
