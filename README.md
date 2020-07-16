@@ -63,8 +63,6 @@ yarn build
 
 To run the tests independently of the existing backend, run `yarn test-serve` / `npm run test-serve`
 
-DISCLAIMER: In Footer test file, "valid link to github" test may fail due to transient failures.
-
 To run the entire test suite, run `yarn test` / `npm test`
 
 To perform a single test run `yarn test --grep 'test name'`/ `npm test -- --grep 'test name'` specifying the name of the test you wish to run.
