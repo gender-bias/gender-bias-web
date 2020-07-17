@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 describe('The footer', function() {
     let page;
 
