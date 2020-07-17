@@ -29,15 +29,7 @@ describe('The readout', function() {
         });
     });
 
-    describe('after clicking submit', function() {
-
-        it('should make a post request', function() {
-            this.skip('This may be ugly to test without stubbing the backend server.');
-        });
-    });
-
     describe('after receiving a response', function() {
-        const TEXT = 'Some text';
 
         before(async function() {
             await page.type(SEL_TEXTAREA, TEXT);
@@ -55,7 +47,7 @@ describe('The readout', function() {
             const element = await page.$(SEL_FEEDBACK);
             const text = await page.evaluate(element => element.innerText, element);
 
-            expect(text).to.include(TEXT);
+            expect(text).to.include("Some willing", "text");
         });
 
         it('should not show the textarea', async function() {
@@ -70,7 +62,6 @@ describe('The readout', function() {
     });
 
     describe('after clicking the back button', function() {
-        const TEXT = "Some text";
 
         before(async function() {
             const button = await page.$(SEL_BACK);
