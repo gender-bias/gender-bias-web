@@ -39,6 +39,7 @@
                                         v-for="message in messages"
                                         :key="message.rnd"
                                         :message="message"
+                                        :summaryHighlight="blurbToHighlight(message.issue.category)"
                                         />
                                     </div>
                                 </div>
@@ -48,6 +49,7 @@
                             <div class = 'sidebar'> 
                                 <p> Try to make the following changes: </p> 
                                 <Summary v-for="summary in summaries"
+                                 @summary-highlighted="highlightedSummary"
                                  :key= "summary.rnd"
                                  :summary ="summary" />
                             </div> 
@@ -56,7 +58,6 @@
                 </div>
             </div>
         </div>
-        
         
     </div>
     
@@ -80,11 +81,25 @@ export default {
             summaries: [],
             rendered: false,
             sidebar_status: false,
-            widthVal: '700px'
+            widthVal: '700px',
+            highlight: "",
 
         };
     },
+
     methods: {
+         blurbToHighlight(blurbProblem) {
+            console.log(blurbProblem)
+            console.log(this.highlight)
+            if(blurbProblem === this.highlight)
+                return true;
+            return false;
+        },
+
+        highlightedSummary(summaryIssue){
+            this.highlight = summaryIssue;
+        },
+
         Show_sidebar() {
             this.sidebar_status = true; 
         },
