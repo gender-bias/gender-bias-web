@@ -13,7 +13,7 @@ This project is currently under active development by members of [GLAM Lab at Wh
 ## Technologies
 * [Vue Framework](https://vuejs.org/v2/guide/#:~:text=Vue%20(pronounced%20%2Fvju%CB%90%2F%2C,up%20to%20be%20incrementally%20adoptable)) for client-based web applications.
 * [Puppeteer, mocha, chai](https://medium.com/@ankit_m/ui-testing-with-puppeteer-and-mocha-part-1-getting-started-b141b2f9e21) for automated end-to-end testing. 
-* Either [yarn](https://classic.yarnpkg.com/en/docs/) or [npm](https://docs.npmjs.com/) for package management.
+* [Yarn](https://classic.yarnpkg.com/en/docs/) for package management.
 
 ## Installation and Usage
 
