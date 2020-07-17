@@ -42,7 +42,7 @@ yarn serve /npm run server
 yarn build
 ```
 
-### Testing
+### Running tests
 
 To run the tests independently of the existing backend, run `yarn test-serve` / `npm run test-serve`
 
