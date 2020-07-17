@@ -1,10 +1,10 @@
-# Reading For Gender Bias - FrontEnd (GEL team)
+# Reading For Gender Bias - Web front end
+
 ## Table of contents 
 * [Introduction](#Introduction)
 * [Technologies](#Technologies)
 * [Installation and Usage](#Installation) 
 * [Credits](#Credits) 
-
 
 ## Introduction
 This project is a web-based user interface for [Reading for Gender Bias](https://github.com/glam-lab/gender-bias). 
