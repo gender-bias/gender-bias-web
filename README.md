@@ -2,7 +2,7 @@
 ## Table of contents 
 * [Introduction](#Introduction)
 * [Technologies](#Technologies)
-* [Installation and Usage](#Installation)
+* [Installation and Usage](#Installation) 
 * [Credits](#Credits) 
 
 
@@ -16,7 +16,8 @@ This project is currently under active development by members of [GLAM Lab at Wh
 * Either [yarn](https://classic.yarnpkg.com/en/docs/) or [npm](https://docs.npmjs.com/) for package management.
 
 ## Installation and Usage
-### Pre-requisite: Install the back-end
+
+### To install the back-end 
 ```
 git clone https://github.com/gender-bias/gender-bias
 cd gender-bias
@@ -24,29 +25,37 @@ pip3 install -e .
 ```
 NOTE: The last line in the above snippet installs this library in "editable" mode, which is probably fine while the library is in a state of flux.
 
-### Install the front-end
-To set up the project, install a package manager such as yarn or npm. Then run either
+### To install packages 
+To set up the project, make sure [`yarn` is installed](https://classic.yarnpkg.com/en/docs/install/#mac-stable) and then use it to install the packages for this project:
 ```
 yarn install
 ```
-or 
-```
-npm install
-``` 
-### Run the front-end 
-Once installed, use yarn or npm to open the server locally:
-```
-yarn serve
-```
-or 
-```
-npm run server
-``` 
 
-To lint and fix files:
+### To run the front-send server
+Once installed, run the front-end server as follows:
+
+```
+yarn serve 
+```
+
+The server runs at `http://localhost:8080` by default.
+
+### To run tests
+
+Before running tests, start the back-end server with `genderbias-server`, or start a fake server with `yarn test-serve`.
+
+To run the entire test suite, run `yarn test`.
+
+To run a single test, run `yarn test --grep 'test name'`, specifying the name of the test you wish to run.
+
+You can find the tests in the `test` directory. The `Component.spec.js` files depend on `bootstrap.js`.
+
+### To lint and fix files
+Run 
 ```
 yarn lint
 ```
+
 ## Contributors
 - Mollie Marr @molliem conceieved the project and guided the developement.
 - Jordan Matlesky @j6k4m8 artd the project and mentored the GLAM team.
