@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <Header v-if = 'header_status'/>     
+        <Header v-if = 'headerStatus'/>     
         <div class = 'main_content'> 
             <Main @hideHeader = '_hideHeader(false)'> </Main>
         </div> 
@@ -23,12 +23,12 @@ export default {
     },
     data() {
         return {
-            header_status: true
+            headerStatus: true
         }
     },
     methods: {
         _hideHeader(data){
-            this.header_status = data;
+            this.headerStatus = data;
         }
     }
 };
