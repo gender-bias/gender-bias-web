@@ -14,6 +14,7 @@
       {{ message.text }}
     </span>
 
+
     <!-- The associated tooltip should be displayed only if 
              there is a problem with the text. -->
     <span v-if="message.issue.problem" id="tooltip">
@@ -21,7 +22,7 @@
         class="tip"
         v-bind:style="{ top: mouseX }"
         v-bind:class="{
-          visible: ishovering || hoveringLock || summaryHighlight,
+          visible: ishovering || hoveringLock,
         }"
       >
         <h1>{{ message.issue.category }}</h1>
@@ -45,11 +46,8 @@ export default {
       type: Boolean,
     },
   },
-  watch: {
-    summaryHighlight: function(newVal, oldVal) {
-      console.log("Prop changed: ", newVal, " | was: ", oldVal);
-    },
-  },
+
+
   data() {
     return {
       ishovering: false,
@@ -66,7 +64,7 @@ export default {
           ? this.message.issue.bias == -1
           : false,
         positiveBias: this.message.issue ? this.message.issue.bias == 1 : false,
-        hoveringLock: this.hoveringLock,
+        hoveringLock: this.hoveringLock || this.summaryHighlight,
       };
     },
     hovered() {
