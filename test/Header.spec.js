@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 describe('The header', function() {
     let page;
 

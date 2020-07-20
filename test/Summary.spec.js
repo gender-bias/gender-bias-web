@@ -40,12 +40,15 @@ describe('The Summary', function() {
             expect(await page.$$(SEL_ISSUE_P)).to.have.lengthOf(2);
         });
 
-        it('it should be highlighted on mouseover', function() {
-            this.skip('not sure how to test style on a hover event.');
+        it('it should be highlighted on mouseover', async function() {
+            await page.hover(SEL_ISSUE);
 
-            // const element = await page.hover('.issue');
-            // const color = await page.evaluate(element => element, element);
-            // expect(color).to.be.null;
+            const issueStyle = await page.evaluate(issue => {
+                const sel = document.querySelector(issue);
+                return JSON.parse(JSON.stringify(getComputedStyle(sel)));
+            }, SEL_ISSUE);
+
+            expect(issueStyle.background).to.include('rgb(98, 176, 240)');
         });
 
     });
