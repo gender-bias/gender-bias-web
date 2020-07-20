@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-describe('The Main', function() {
+describe('The Main component', function() {
     let page;
 
     before(async function() {
