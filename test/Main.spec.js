@@ -88,7 +88,7 @@ describe('The Main component', function() {
     });
     describe('The Sidebar', function() {
            
-        describe('intially', function() {
+        describe('initially', function() {
     
             it('it should be hidden when we start the server', async function(){
                 let sidebar = page.$(SEL_SIDEBAR);
