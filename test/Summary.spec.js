@@ -47,5 +47,13 @@ describe('The summary', function() {
 
             expect(issueStyle.background).to.include('rgb(98, 176, 240)');
         });
+
+        it('corresponding flag should be highlighted', async function() {
+            await page.hover(SEL_ISSUE);
+
+            const element = await page.$(".summaryHighlight");
+            expect(element).to.exist;
+        });
+
     });
 });
