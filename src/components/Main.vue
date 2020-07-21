@@ -17,7 +17,7 @@
                                         <button
                                             class="button is-info is-fullwidth submit-button"
                                             v-on:click="renderIssues" 
-                                            @click = "Show_sidebar(); hideHeader(); changeWidth()"
+                                            @click = "showSidebar(); hideHeader(); changeWidth()"
                                         >
                                             Submit
                                         </button>
@@ -25,7 +25,7 @@
                                 </div>
                                 <div v-if="rendered">
                                     <button
-                                        class="button is-primary is-fullwidth"
+                                        class="button is-primary is-fullwidth back-button"
                                         v-on:click="
                                             () => {
                                             rendered = false;
@@ -45,7 +45,7 @@
                                 </div>
                             </div>
                         </div> 
-                        <div class ='sidebar_container' v-if = 'sidebar_status'>
+                        <div class ='sidebar_container' v-if = 'sidebarStatus'>
                             <div class = 'sidebar'> 
                                 <p> Try to make the following changes: </p> 
                                 <Summary v-for="summary in summaries"
@@ -58,11 +58,10 @@
                 </div>
             </div>
         </div>
-        
+    
     </div>
     
 </template>
-
 <script>
 import Blurb from "./Blurb";
 import Summary from "./Summary.vue"
@@ -83,11 +82,11 @@ export default {
             sidebar_status: false,
             widthVal: '700px',
             highlight: "",
-
         };
     },
 
     methods: {
+
          blurbToHighlight(blurbProblem) {
             console.log(blurbProblem)
             console.log(this.highlight)
@@ -100,8 +99,8 @@ export default {
             this.highlight = summaryIssue;
         },
 
-        Show_sidebar() {
-            this.sidebar_status = true; 
+        showSidebar() {
+            this.sidebarStatus = true; 
         },
         hideHeader() {
             this.$emit('hideHeader'); 
@@ -176,8 +175,6 @@ export default {
     }
 };
 </script>
-
-
 <style lang="scss">
 $errorful: rgba(172, 0, 0, 0.845);
 $warningful: rgba(191, 94, 9, 0.845);

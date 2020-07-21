@@ -64,7 +64,8 @@ export default {
           ? this.message.issue.bias == -1
           : false,
         positiveBias: this.message.issue ? this.message.issue.bias == 1 : false,
-        hoveringLock: this.hoveringLock || this.summaryHighlight,
+        hoveringLock: this.hoveringLock,
+        summaryHighlight: this.summaryHighlight,
       };
     },
     hovered() {
@@ -128,7 +129,7 @@ a {
   transition: background 0.2s;
   background: none;
   cursor: pointer;
-  &:hover {
+  &.summaryHighlight, &:hover {
     background: mix(white, $errorful, 70%);
   }
   &.positiveBias {

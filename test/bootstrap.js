@@ -19,7 +19,7 @@ before(async function() {
     global.SEL_TEXTAREA = 'textarea';
     global.SEL_SUBMIT = '.submit-button';
     global.SEL_BACK = '.back-button';
-    global.SEL_FEEDBACK = '#feedback';
+    global.SEL_BLURBS = '.blurbs';
     global.SEL_SIDEBAR = '.sidebar_container';
     global.SEL_READOUT = '.readout_container';
     global.SEL_SUMMARY = '#summary';

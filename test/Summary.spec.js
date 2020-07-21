@@ -1,5 +1,6 @@
-describe('The Summary', function() {
+describe('The summary', function() {
     let page;
+
     before(async function() {
         page = await browser.newPage();
         await page.goto('http://localhost:8080');
@@ -9,38 +10,34 @@ describe('The Summary', function() {
         await page.close();
     });
 
-    describe('Initially', function() {
+    describe('initially', function() {
 
-        it("it shouldn't exist until the Sidebar component is shown", async function() {
+        it("should not exist", async function() {
             const summariescontainer = await page.$(SEL_SIDEBAR_CONTAINER);
             expect(summariescontainer).to.be.null;
         });
-
     });
 
-    describe('After Submission', function() {
+    describe('after submission', function() {
 
-        const TEXT = "Some willing text";
         before(async function() {
-
             await page.type(SEL_TEXTAREA, TEXT);
 
             const button = await page.$(SEL_SUBMIT);
             await button.click();
         });
 
-        it('it should appear after submission', async function() {
+        it('should appear after submission', async function() {
             const summariescontainer = await page.$(SEL_SIDEBAR_CONTAINER);
-            expect(summariescontainer).to.not.be.null;
-
+            expect(summariescontainer).to.exist;
         });
 
-        it('it should have the a real summary text', async function() {
+        it('should have correct number of summaries', async function() {
             await page.waitFor(SEL_ISSUE_P);
             expect(await page.$$(SEL_ISSUE_P)).to.have.lengthOf(2);
         });
 
-        it('it should be highlighted on mouseover', async function() {
+        it('should be highlighted on mouseover', async function() {
             await page.hover(SEL_ISSUE);
 
             const issueStyle = await page.evaluate(issue => {
@@ -50,7 +47,5 @@ describe('The Summary', function() {
 
             expect(issueStyle.background).to.include('rgb(98, 176, 240)');
         });
-
     });
-
 });

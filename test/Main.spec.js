@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-describe('The Main', function() {
+describe('The main component', function() {
     let page;
 
     before(async function() {
@@ -44,7 +44,7 @@ describe('The Main', function() {
         });
 
         it('should show the original text', async function() {
-            const element = await page.$(SEL_FEEDBACK);
+            const element = await page.$(SEL_BLURBS);
             const text = await page.evaluate(element => element.innerText, element);
 
             expect(text).to.include("Some willing", "text");
@@ -85,43 +85,17 @@ describe('The Main', function() {
             expect(btn).to.be.null;
         });
 
-    });
-    describe('The Sidebar', function() {
-           
-        describe('intially', function() {
-    
-            it('it should be hidden when we start the server', async function(){
-                let sidebar = page.$(SEL_SIDEBAR);
-            });
-            it('it should have the textArea with big size', async function() {
-            
-            });
+        it("should change width of textarea", async function() {
+            const issueStyle = await page.evaluate(textarea => {
+                const sel = document.querySelector(textarea);
+                return JSON.parse(JSON.stringify(getComputedStyle(sel)));
+            }, SEL_TEXTAREA);
+
+            expect(issueStyle.width).to.eql('425px');
         });
-    
-        describe('After submission', function() {
-            
-            it('it should appear', async function() {
-    
-            });
-    
-            it('it should have Summary Component(s)', async function() {
-    
-            });
-            it('it should have the correct number of Summary Component(s)', async function(){
-            //     let summaries = []; 
-            //     let number_of_summaries = 0; 
-            //     let test = await page.evaluate( () => {
-            //     summaries = document.querySelectorAll(SEL_SUMMARY); 
-            //     number_of_summaries = await page.$(SEL_SUMMARY); 
-            //     });
-            //     expect(number_of_summaries === summaries.length).to.be.true; 
-            }); 
-            it('it should change the width of the textarea', async function() {
 
-            }); 
-            it('it should make the sidebar inline with the textArea', async function() {
-
-            }); 
-        }); 
+        it('should make the sidebar inline with the textArea', function() {
+            this.skip('not sure yet how to test this yet');
+        });
     });
 });
