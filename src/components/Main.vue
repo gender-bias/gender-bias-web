@@ -40,7 +40,7 @@
                                         :key="message.rnd"
                                         :message="message"
                                         :summaryHighlight="issueIsHighlighted(message.issue.category)"
-                                        @blurb-highlighted="highlightedSummary(message.issue.category)"
+                                        @blurb-highlighted="highlightedSummary"
                                         />
                                     </div>
                                 </div>

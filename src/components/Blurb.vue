@@ -70,10 +70,11 @@ export default {
     },
     hovered() {
       this.ishovering = true;
-      this.$emit("blurb-highlighted");
+      this.$emit("blurb-highlighted", this.message.issue.category);
     },
     unhovered() {
       this.ishovering = false;
+      this.$emit("blurb-highlighted", "");
     },
     hoverLock() {
       this.hoveringLock = !this.hoveringLock;
