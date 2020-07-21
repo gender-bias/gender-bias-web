@@ -25,7 +25,7 @@
                                 </div>
                                 <div v-if="rendered">
                                     <button
-                                        class="button is-primary is-fullwidth"
+                                        class="button is-primary is-fullwidth back-button"
                                         v-on:click="
                                             () => {
                                             rendered = false;
