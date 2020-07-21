@@ -5,6 +5,7 @@
       @mouseout="hasBeenHighlighted('')"
       class="issue"
       v-if="summary.text.length >= 2"
+      v-bind:class="{ issueHover: highlight }"
     >
       <p class="problem">{{ summary.title }}</p>
       <p class="summary">&nbsp; {{ summary.text }}</p>
@@ -18,12 +19,15 @@ export default {
     props: {
         summary: {
             type: Object
+        },
+        highlight: {
+            type: Boolean
         }
     },
 
     methods: {
         hasBeenHighlighted(title){
-            console.log(title)
+            // console.log(title)
             this.$emit("summary-highlighted", title)
         }
     }
@@ -44,7 +48,7 @@ export default {
   margin-top: 3px;
   margin-bottom: 3px;
 }
-.issue:hover {
+.issue:hover, .issueHover{
   background: rgb(98, 176, 240);
   color: white;
   font-weight: 300;

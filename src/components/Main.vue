@@ -39,7 +39,8 @@
                                         v-for="message in messages"
                                         :key="message.rnd"
                                         :message="message"
-                                        :summaryHighlight="blurbToHighlight(message.issue.category)"
+                                        :summaryHighlight="issueIsHighlighted(message.issue.category)"
+                                        @blurb-highlighted="highlightedSummary(message.issue.category)"
                                         />
                                     </div>
                                 </div>
@@ -51,7 +52,9 @@
                                 <Summary v-for="summary in summaries"
                                  @summary-highlighted="highlightedSummary"
                                  :key= "summary.rnd"
-                                 :summary ="summary" />
+                                 :summary ="summary" 
+                                 :highlight ="issueIsHighlighted(summary.title)"
+                                 />      
                             </div> 
                         </div>
                     </span> 
@@ -87,10 +90,9 @@ export default {
 
     methods: {
 
-         blurbToHighlight(blurbProblem) {
-            console.log(blurbProblem)
-            console.log(this.highlight)
-            if(blurbProblem === this.highlight)
+         issueIsHighlighted(issue) {
+            // console.log(issue)
+            if(issue === this.highlight)
                 return true;
             return false;
         },
@@ -98,7 +100,6 @@ export default {
         highlightedSummary(summaryIssue){
             this.highlight = summaryIssue;
         },
-
         showSidebar() {
             this.sidebarStatus = true; 
         },

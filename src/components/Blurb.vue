@@ -70,6 +70,7 @@ export default {
     },
     hovered() {
       this.ishovering = true;
+      this.$emit("blurb-highlighted");
     },
     unhovered() {
       this.ishovering = false;
@@ -129,7 +130,7 @@ a {
   transition: background 0.2s;
   background: none;
   cursor: pointer;
-  &.summaryHighlight, &:hover {
+  &:hover, &.summaryHighlight {
     background: mix(white, $errorful, 70%);
   }
   &.positiveBias {
