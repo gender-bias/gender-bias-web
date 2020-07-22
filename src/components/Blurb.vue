@@ -42,7 +42,7 @@ export default {
     message: {
       type: Object,
     },
-    summaryHighlight: {
+    highlight: {
       type: Boolean,
     },
   },
@@ -65,7 +65,7 @@ export default {
           : false,
         positiveBias: this.message.issue ? this.message.issue.bias == 1 : false,
         hoveringLock: this.hoveringLock,
-        summaryHighlight: this.summaryHighlight,
+        issueHover: this.highlight,
       };
     },
     hovered() {
@@ -131,7 +131,7 @@ a {
   transition: background 0.2s;
   background: none;
   cursor: pointer;
-  &:hover, &.summaryHighlight {
+  &:hover, &.issueHover {
     background: mix(white, $errorful, 70%);
   }
   &.positiveBias {
