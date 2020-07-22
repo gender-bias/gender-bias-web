@@ -27,9 +27,15 @@
 p {
     font-family: Avenir, Helvetica, Arial, sans-serif;
 }
+.title {
+    margin-bottom: 20px;
+}
 
 .title,
 .subtitle {
     text-align: center;
+}
+.container {
+    margin-left: 65px;
 }
 </style>

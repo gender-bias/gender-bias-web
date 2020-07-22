@@ -86,7 +86,7 @@ $warningful: rgba(191, 94, 9, 0.845);
 $goodful: rgba(22, 125, 70, 0.845);
 
 a {
-    color: #42b983;
+    color: #42b1b9;
 }
 
 .tip {
@@ -99,7 +99,7 @@ a {
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.2s;
-    background: mix(lavender, white, 70%);
+    background: mix(lavender, rgb(255, 255, 255), 70%);
     &.visible {
         opacity: 1;
         z-index: 99;
