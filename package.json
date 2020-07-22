@@ -4,14 +4,18 @@
     "private": true,
     "scripts": {
         "serve": "vue-cli-service serve --host 0.0.0.0",
+        "test-serve": "vue-cli-service serve --host 0.0.0.0 --mode test",
         "build": "vue-cli-service build",
         "lint": "vue-cli-service lint",
-        "test": "mocha test/bootstrap.js --recursive test"
+        "test": "mocha test/bootstrap.js --recursive --timeout 5000 test"
     },
     "dependencies": {
+        "@vue/test-utils": "^1.0.3",
         "bulma": "^0.9.0",
         "chai": "^4.2.0",
+        "chai-string": "^1.5.0",
         "core-js": "^3.6.5",
+        "miragejs": "^0.1.40",
         "mocha": "^8.0.1",
         "node-sass": "^4.14.1",
         "puppeteer": "^4.0.1",
