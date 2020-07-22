@@ -82,7 +82,7 @@ export default {
             messages: [],
             summaries: [],
             rendered: false,
-            sidebar_status: false,
+            sidebarStatus: false,
             widthVal: '700px',
             highlight: "",
         };
