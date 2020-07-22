@@ -197,7 +197,7 @@ a {
 }
 .wrapper {
     width: 100%; 
-    text-align: center; 
+    text-align: left; 
     display: inline-block;
 }
 #sidebar_container   {
