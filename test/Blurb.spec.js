@@ -85,5 +85,12 @@ describe('A blurb', function() {
             const element = await page.$(SEL_UNFLAGGED + SEL_TOOLTIP);
             expect(element).to.be.null;
         });
+
+        it('should highlight corresponding summary on hover', async function() {
+            await page.hover(SEL_NOTICE);
+
+            const element = await page.$("#summary .issueHover");
+            expect(element).to.exist;
+        });
     });
 });
