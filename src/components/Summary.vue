@@ -27,7 +27,6 @@ export default {
 
     methods: {
         hasBeenHighlighted(title){
-            // console.log(title)
             this.$emit("summary-highlighted", title)
         }
     }
