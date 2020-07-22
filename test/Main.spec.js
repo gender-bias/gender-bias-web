@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 describe('The main component', function() {
     let page;
+    let initialTextAreaWidth;
 
     before(async function() {
         page = await browser.newPage();
@@ -11,10 +12,19 @@ describe('The main component', function() {
         await page.close();
     });
 
+    async function getElementWidth(selector) {
+        const elementStyle = await page.evaluate(sel => {
+            const element = document.querySelector(sel);
+            return JSON.parse(JSON.stringify(getComputedStyle(element)));
+        }, selector);
+        return parseInt(elementStyle.width);
+    }
+
     describe('initially', function() {
 
         it('should show one textarea', async function() {
             await page.waitFor(SEL_TEXTAREA);
+            initialTextAreaWidth = await getElementWidth(SEL_TEXTAREA);
             expect(await page.$$(SEL_TEXTAREA)).to.have.lengthOf(1);
         });
 
@@ -86,12 +96,8 @@ describe('The main component', function() {
         });
 
         it("should change width of textarea", async function() {
-            const issueStyle = await page.evaluate(textarea => {
-                const sel = document.querySelector(textarea);
-                return JSON.parse(JSON.stringify(getComputedStyle(sel)));
-            }, SEL_TEXTAREA);
-
-            expect(issueStyle.width).to.eql('425px');
+            const currWidth = await getElementWidth(SEL_TEXTAREA)
+            expect(currWidth).to.be.below(await initialTextAreaWidth);
         });
 
         it('should make the sidebar inline with the textArea', function() {

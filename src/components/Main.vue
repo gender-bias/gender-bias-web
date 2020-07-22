@@ -39,7 +39,7 @@
                                         v-for="message in messages"
                                         :key="message.rnd"
                                         :message="message"
-                                        :highlight="issueIsHighlighted(message.issue.category)"
+                                        :highlight="message.issue.category === highlight"
                                         @blurb-highlighted="highlightedIssue"
                                         />
                                     </div>
@@ -53,7 +53,7 @@
                                  @summary-highlighted="highlightedIssue"
                                  :key= "summary.rnd"
                                  :summary ="summary" 
-                                 :highlight ="issueIsHighlighted(summary.title)"
+                                 :highlight ="summary.title === highlight"
                                  />      
                             </div> 
                         </div>
@@ -82,17 +82,13 @@ export default {
             messages: [],
             summaries: [],
             rendered: false,
-            sidebar_status: false,
+            sidebarStatus: false,
             widthVal: '700px',
             highlight: "",
         };
     },
 
     methods: {
-
-        issueIsHighlighted(issue) {
-            return (issue === this.highlight);
-        },
         highlightedIssue(issue){
             this.highlight = issue;
         },
