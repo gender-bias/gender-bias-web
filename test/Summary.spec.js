@@ -47,7 +47,7 @@ describe('The summary', function() {
         it('corresponding flag should be highlighted', async function() {
             await page.hover(SEL_ISSUE);
 
-            const element = await page.$(".summaryHighlight");
+            const element = await page.$(".issueHover");
             expect(element).to.exist;
         });
 
