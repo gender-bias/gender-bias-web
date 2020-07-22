@@ -30,6 +30,7 @@ before(async function() {
     global.SEL_SIDEBAR_CONTAINER = '.sidebar_container';
     global.SEL_ISSUE = '.issue';
     global.SEL_ISSUE_P = '.issue p';
+    global.SEL_ISSUE_HOVER = ".issue:hover";
     global.TEXT = "Some willing text";
 
 });

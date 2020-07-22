@@ -40,12 +40,8 @@ describe('The summary', function() {
         it('should be highlighted on mouseover', async function() {
             await page.hover(SEL_ISSUE);
 
-            const issueStyle = await page.evaluate(issue => {
-                const sel = document.querySelector(issue);
-                return JSON.parse(JSON.stringify(getComputedStyle(sel)));
-            }, SEL_ISSUE);
-
-            expect(issueStyle.background).to.include('rgb(98, 176, 240)');
+            const issueHover = await page.waitFor(SEL_ISSUE_HOVER);
+            expect(issueHover).to.exist;
         });
     });
 });
