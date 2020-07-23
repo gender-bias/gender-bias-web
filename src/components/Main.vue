@@ -95,7 +95,7 @@ export default {
         },
 
         async makeFetchReq(){
-            let res = await fetch(`${URL}/check`, {
+            const res = await fetch(`${URL}/check`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
@@ -105,43 +105,58 @@ export default {
             return await res.json();
         },
 
+        getIssues(payload){
+            let issues = [];
+            for (const issue of payload.issues) 
+                issues = issues.concat(issue);
+            return issues;
+        },
+
+        mapFlag(issue){
+            return issue.flags.map(f => {
+                        return { start: f[0],
+                                 end: f[1],
+                                 category: f[2],
+                                 problem: f[3],
+                                 suggestion: f[4],
+                                 bias: f[5]
+                               };
+            });
+        },
+
+        getFlags(issues){
+            let flags = [
+                {   
+                    start: 0,
+                    end: 0,
+                    category: "",
+                    problem: ""
+                }
+            ];
+            for (const issue of issues) 
+                flags = flags.concat(this.mapFlag(issue));
+
+            return flags;
+        },
+
+        renderTextArray(text, flags) {
+            let textArray = text.split("");
+            for (const [i, flag] of flags.entries()) {
+                textArray[flag.end] = "[!]||||" + textArray[flag.end];
+                textArray[flag.start] = `[!]||${i}||` + textArray[flag.start];
+            }
+            return textArray.join("").split("[!]");
+        },
+
         renderIssues() {
             this.rendered = true;
             this.makeFetchReq()
                 .then(payload => {
-                    let issues = [];
-                    let flags = [
-                        {
-                            start: 0,
-                            end: 0,
-                            category: "",
-                            problem: ""
-                        }
-                    ];
-                    let text = payload.text;
-                    for (const issue of payload.issues) {
-                        issues = issues.concat(issue);
-                        flags = flags.concat(
-                            issue.flags.map(f => {
-                                return {
-                                    start: f[0],
-                                    end: f[1],
-                                    category: f[2],
-                                    problem: f[3],
-                                    suggestion: f[4],
-                                    bias: f[5]
-                                };
-                            })
-                        );
-                    }
-                    let renderTextArray = text.split("");
-                    for (const [i, flag] of flags.entries()) {
-                        renderTextArray[flag.end] =
-                            "[!]||||" + renderTextArray[flag.end];
-                        renderTextArray[flag.start] =
-                            `[!]||${i}||` + renderTextArray[flag.start];
-                    }
-                    let messages = renderTextArray.join("").split("[!]");
+                    const issues = this.getIssues(payload),
+                            flags = this.getFlags(issues),
+                            text = payload.text,
+                            messages = this.renderTextArray(text, flags);
+               
                     this.messages = messages.map(text => {
                         return {
                             text: text.split("||")[2],
@@ -151,6 +166,7 @@ export default {
                                 : false
                         }
                     });
+
                     this.summaries = issues.map(issue => {
                         return { 
                             text: issue.summary,
