@@ -93,16 +93,21 @@ export default {
                 this.widthVal ='425px';
             }
         },
-        renderIssues() {
-            this.rendered = true;
-            fetch(`${URL}/check`, {
+
+        async makeFetchReq(){
+            let res = await fetch(`${URL}/check`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     text: this.inputText
                 })
-            })
-                .then(res => res.json())
+            });
+            return await res.json();
+        },
+
+        renderIssues() {
+            this.rendered = true;
+            this.makeFetchReq()
                 .then(payload => {
                     let issues = [];
                     let flags = [
