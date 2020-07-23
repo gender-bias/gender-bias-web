@@ -37,5 +37,4 @@ export default {
     color: white; 
     font-weight: 300;
 }
-
 </style>

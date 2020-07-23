@@ -7,6 +7,7 @@
         <Footer />
     </div>
 </template>
+
 <script>
 import Main from "@/components/Main.vue";
 import Header from "@/components/Header.vue";
@@ -30,8 +31,10 @@ export default {
     }
 };
 </script>
+
 <style>
 #app {
+    width: 100%; 
     font-family: "Roboto Slab", Georgia, "Times New Roman";
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -40,6 +43,5 @@ export default {
 }
 .main_content {
      width: 100%; 
-     margin-left: 20px; 
 }   
 </style>
