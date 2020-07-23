@@ -114,13 +114,13 @@ export default {
 
         mapFlag(issue){
             return issue.flags.map(f => {
-                        return { start: f[0],
-                                 end: f[1],
-                                 category: f[2],
-                                 problem: f[3],
-                                 suggestion: f[4],
-                                 bias: f[5]
-                               };
+                return {start: f[0],
+                        end: f[1],
+                        category: f[2],
+                        problem: f[3],
+                        suggestion: f[4],
+                        bias: f[5]
+                       };
             });
         },
 
@@ -150,24 +150,24 @@ export default {
 
         setMessages(text, flags, messages){
             return messages.map(text => {
-                        return {
-                            text: text.split("||")[2],
-                            rnd: Math.random(),
-                            issue: text.split("||")[1]
-                                ? flags[parseInt(text.split("||")[1])]
-                                : false
-                        }
-                    });
+                return {
+                    text: text.split("||")[2],
+                    rnd: Math.random(),
+                    issue: text.split("||")[1]
+                        ? flags[parseInt(text.split("||")[1])]
+                        : false
+                }
+            });
         },
 
         setSummaries(issues){
             return issues.map(issue => {
-                        return { 
-                            text: issue.summary,
-                            title: issue.name,
-                            rnd: Math.random()
-                        };
-                    });
+                return { 
+                    text: issue.summary,
+                    title: issue.name,
+                    rnd: Math.random()
+                };
+            });
         },
 
         renderIssues() {
