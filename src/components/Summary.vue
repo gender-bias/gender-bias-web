@@ -51,7 +51,5 @@ export default {
     background: rgb(98, 176, 240);
     color: white;
     font-weight: 300;
-    width: 170px;
-    font-size: 13px;
 }
 </style>

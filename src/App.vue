@@ -7,13 +7,10 @@
         <Footer />
     </div>
 </template>
-
 <script>
 import Main from "@/components/Main.vue";
 import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
-
-
 export default {
     name: "App",
     components: {
@@ -32,15 +29,9 @@ export default {
         }
     }
 };
-
 </script>
-
 <style>
-
-
-
 #app {
-    /* font-family: Avenir, Helvetica, Arial, sans-serif; */
     font-family: "Roboto Slab", Georgia, "Times New Roman";
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
