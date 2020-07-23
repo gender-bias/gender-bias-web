@@ -62,6 +62,7 @@
 <script>
 import Blurb from "./Blurb";
 import Summary from "./Summary.vue"
+import uniqueId from 'lodash.uniqueid';
 const URL = "http://localhost:5000";
 export default {
     name: "Main",
@@ -152,7 +153,7 @@ export default {
             return messages.map(text => {
                 return {
                     text: text.split("||")[2],
-                    rnd: Math.random(),
+                    rnd: uniqueId('message-'),
                     issue: text.split("||")[1]
                         ? flags[parseInt(text.split("||")[1])]
                         : false
@@ -165,7 +166,7 @@ export default {
                 return { 
                     text: issue.summary,
                     title: issue.name,
-                    rnd: Math.random()
+                    rnd: uniqueId('summary-')
                 };
             });
         },
