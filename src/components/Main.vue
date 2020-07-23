@@ -127,12 +127,12 @@ export default {
                     problem: ""
                 }
             ];
-            //map instead of loop
-            for (const issue of issues) 
-                flags = flags.concat(this.mapFlag(issue));
 
+            issues.map(issue => 
+                flags = flags.concat(this.mapFlag(issue)));
             return flags;
         },
+
         //add comments
         getBlurbs(text, flags) {
             let textArray = text.split("");
