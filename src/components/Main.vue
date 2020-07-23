@@ -94,7 +94,7 @@ export default {
             }
         },
 
-        async makeFetchReq(){
+        async fetchJSON(){
             const res = await fetch(`${URL}/check`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -103,13 +103,6 @@ export default {
                 })
             });
             return await res.json();
-        },
-
-        getIssues(payload){
-            let issues = [];
-            for (const issue of payload.issues) 
-                issues = issues.concat(issue);
-            return issues;
         },
 
         mapFlag(issue){
@@ -133,13 +126,14 @@ export default {
                     problem: ""
                 }
             ];
+            //map instead of loop
             for (const issue of issues) 
                 flags = flags.concat(this.mapFlag(issue));
 
             return flags;
         },
-
-        renderTextArray(text, flags) {
+        //add comments
+        getBlurbs(text, flags) {
             let textArray = text.split("");
             for (const [i, flag] of flags.entries()) {
                 textArray[flag.end] = "[!]||||" + textArray[flag.end];
@@ -148,7 +142,7 @@ export default {
             return textArray.join("").split("[!]");
         },
 
-        setMessages(text, flags, messages){
+        getMessages(text, flags, messages){
             return messages.map(text => {
                 return {
                     text: text.split("||")[2],
@@ -160,7 +154,7 @@ export default {
             });
         },
 
-        setSummaries(issues){
+        getSummaries(issues){
             return issues.map(issue => {
                 return { 
                     text: issue.summary,
@@ -171,17 +165,17 @@ export default {
         },
 
         renderIssues() {
-            this.rendered = true;
-            this.makeFetchReq()
+            this.fetchJSON()
                 .then(payload => {
-                    const issues = this.getIssues(payload),
-                            flags = this.getFlags(issues),
-                            text = payload.text,
-                            messages = this.renderTextArray(text, flags);
+                    const issues = payload.issues;
+                    const flags = this.getFlags(issues);
+                    const text = payload.text;
+                    const messages = this.getBlurbs(text, flags);
                
-                    this.messages = this.setMessages(text, flags, messages);
-                    this.summaries = this.setSummaries(issues);
+                    this.messages = this.getMessages(text, flags, messages);
+                    this.summaries = this.getSummaries(issues);
                 });
+            this.rendered = true;
         }
     }
 };
