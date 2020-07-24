@@ -4,9 +4,7 @@
             <div class="column is-8 is-offset-2">
                 <p>
                     Learn more on
-                    <a href="https://github.com/gender-bias/gender-bias"
-                        >GitHub</a
-                    >.
+                    <a href="https://github.com/gender-bias/gender-bias">GitHub</a>.
                 </p>
             </div>
         </div>

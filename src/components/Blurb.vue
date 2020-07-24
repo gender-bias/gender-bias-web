@@ -1,4 +1,4 @@
-<!-- A Blurb is a span that has styling and possibly a tooltip. -->
+<!-- A Blurb is a span that has styling and a tooltip. -->
 
 <template>
     <span style="display: inline" id = "container">

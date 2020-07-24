@@ -93,7 +93,13 @@ export default {
             }
         },
         renderIssues() {
+
+        /*
+        This function employs the back-end server to analyze the text 
+        to render issues and summaries. 
+        */
             this.rendered = true;
+        
             fetch(`${URL}/check`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
