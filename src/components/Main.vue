@@ -132,8 +132,11 @@ export default {
             return flags;
         },
 
-        //add comments
         getBlurbs(text, flags) {
+
+            //splits and demarcates text into blurbs
+            //using the start and end indexes of flags
+
             let textArray = text.split("");
             for (const [i, flag] of flags.entries()) {
                 textArray[flag.end] = "[!]||||" + textArray[flag.end];
