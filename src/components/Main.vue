@@ -57,6 +57,7 @@
 <script>
 import Blurb from "./Blurb";
 import Summary from "./Summary.vue"
+import uniqueId from 'lodash.uniqueid';
 const URL = "http://localhost:5000";
 export default {
     name: "Main",
@@ -92,67 +93,92 @@ export default {
                 this.floatVal ='right'; 
             }
         },
-        renderIssues() {
-            this.rendered = true;
-            fetch(`${URL}/check`, {
+
+        async fetchJSON(){
+            const res = await fetch(`${URL}/check`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     text: this.inputText
                 })
-            })
-                .then(res => res.json())
+            });
+            return await res.json();
+        },
+
+        mapFlag(issue){
+            return issue.flags.map(f => {
+                return {start: f[0],
+                        end: f[1],
+                        category: f[2],
+                        problem: f[3],
+                        suggestion: f[4],
+                        bias: f[5]
+                       };
+            });
+        },
+
+        getFlags(issues){
+            let flags = [
+                {   
+                    start: 0,
+                    end: 0,
+                    category: "",
+                    problem: ""
+                }
+            ];
+
+            issues.map(issue => 
+                flags = flags.concat(this.mapFlag(issue)));
+            return flags;
+        },
+
+        getBlurbs(text, flags) {
+
+            //splits and demarcates text into blurbs
+            //using the start and end indexes of flags
+
+            let textArray = text.split("");
+            for (const [i, flag] of flags.entries()) {
+                textArray[flag.end] = "[!]||||" + textArray[flag.end];
+                textArray[flag.start] = `[!]||${i}||` + textArray[flag.start];
+            }
+            return textArray.join("").split("[!]");
+        },
+
+        getMessages(text, flags, messages){
+            return messages.map(text => {
+                return {
+                    text: text.split("||")[2],
+                    rnd: uniqueId('message-'),
+                    issue: text.split("||")[1]
+                        ? flags[parseInt(text.split("||")[1])]
+                        : false
+                }
+            });
+        },
+
+        getSummaries(issues){
+            return issues.map(issue => {
+                return { 
+                    text: issue.summary,
+                    title: issue.name,
+                    rnd: uniqueId('summary-')
+                };
+            });
+        },
+
+        renderIssues() {
+            this.fetchJSON()
                 .then(payload => {
-                    let issues = [];
-                    let flags = [
-                        {
-                            start: 0,
-                            end: 0,
-                            category: "",
-                            problem: ""
-                        }
-                    ];
-                    let text = payload.text;
-                    for (const issue of payload.issues) {
-                        issues = issues.concat(issue);
-                        flags = flags.concat(
-                            issue.flags.map(f => {
-                                return {
-                                    start: f[0],
-                                    end: f[1],
-                                    category: f[2],
-                                    problem: f[3],
-                                    suggestion: f[4],
-                                    bias: f[5]
-                                };
-                            })
-                        );
-                    }
-                    let renderTextArray = text.split("");
-                    for (const [i, flag] of flags.entries()) {
-                        renderTextArray[flag.end] =
-                            "[!]||||" + renderTextArray[flag.end];
-                        renderTextArray[flag.start] =
-                            `[!]||${i}||` + renderTextArray[flag.start];
-                    }
-                    let messages = renderTextArray.join("").split("[!]");
-                    this.messages = messages.map(text => {
-                        return {
-                            text: text.split("||")[2],
-                            rnd: Math.random(),
-                            issue: text.split("||")[1]
-                                ? flags[parseInt(text.split("||")[1])]
-                                : false
-                        }
-                    });
-                    this.summaries = issues.map(issue => {
-                        return { 
-                            text: issue.summary,
-                            title: issue.name,
-                            rnd: Math.random()
-                        };
-                    });
+                    const issues = payload.issues;
+                    const flags = this.getFlags(issues);
+                    const text = payload.text;
+                    const messages = this.getBlurbs(text, flags);
+               
+                    this.messages = this.getMessages(text, flags, messages);
+                    this.summaries = this.getSummaries(issues);
                 });
+            this.rendered = true;
         }
     }
 };
