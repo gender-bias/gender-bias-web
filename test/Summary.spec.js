@@ -27,7 +27,7 @@ describe('The summary', function() {
             await button.click();
         });
 
-        it('should appear after submission', async function() {
+        it('should appear', async function() {
             const summariescontainer = await page.$(SEL_SIDEBAR_CONTAINER);
             expect(summariescontainer).to.exist;
         });

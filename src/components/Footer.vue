@@ -17,7 +17,6 @@
 p {
     font-family: Avenir, Helvetica, Arial, sans-serif;
 }
-
 .title,
 .subtitle {
     text-align: center;

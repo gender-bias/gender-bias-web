@@ -4,20 +4,19 @@
             <div class="columns">
                 <div class="column is-8 is-offset-2">
                     <span class = "wrapper">
-                        <div class = "readout_container">
+                        <div class = "readoutContainer" v-bind:style ="{float: floatVal, width: widthVal}">
                             <div class="readout">
                                 <div v-if="!rendered">
                                     <textarea
                                         v-model="inputText"
-                                        v-bind:style="{width: widthVal}"
                                         class="textarea text-input"
                                         placeholder="Paste your letter of recommendation here."
                                     ></textarea>
                                     <div class="btn-container">
                                         <button
                                             class="button is-info is-fullwidth submit-button"
-                                            v-on:click="renderIssues" 
-                                            @click = "showSidebar(); hideHeader(); changeWidth()"
+                                            v-on:click="renderIssues(); showSidebar();
+                                            hideHeader(); changeWidth()"
                                         >
                                             Submit
                                         </button>
@@ -26,15 +25,11 @@
                                 <div v-if="rendered">
                                     <button
                                         class="button is-primary is-fullwidth back-button"
-                                        v-on:click="
-                                            () => {
-                                            rendered = false;
-                                            }
-                                        "
+                                        v-on:click=" Again();"
                                     >
                                         &leftarrow; Again!
                                     </button>
-                                    <div class = 'blurbs' v-bind:style="{width: widthVal}">
+                                    <div class = 'blurbs'>
                                         <Blurb
                                         v-for="message in messages"
                                         :key="message.rnd"
@@ -46,7 +41,7 @@
                                 </div>
                             </div>
                         </div> 
-                        <div class ='sidebar_container' v-if = 'sidebarStatus'>
+                        <div class ='sidebarContainer' v-if = 'sidebarStatus'>
                             <div class = 'sidebar'> 
                                 <p> Try to make the following changes: </p> 
                                 <Summary v-for="summary in summaries"
@@ -63,8 +58,8 @@
         </div>
     
     </div>
-    
 </template>
+
 <script>
 import Blurb from "./Blurb";
 import Summary from "./Summary.vue"
@@ -83,14 +78,17 @@ export default {
             summaries: [],
             rendered: false,
             sidebarStatus: false,
-            widthVal: '700px',
-            highlight: "",
+            widthVal: '100%',
+            floatVal: 'none'
         };
     },
 
     methods: {
         highlightedIssue(issue){
             this.highlight = issue;
+        },
+        Again() {
+            this.rendered = false; 
         },
         showSidebar() {
             this.sidebarStatus = true; 
@@ -99,8 +97,9 @@ export default {
             this.$emit('hideHeader'); 
         },
         changeWidth(){
-            if (this.widthVal === '700px'){
-                this.widthVal ='425px';
+            if (this.widthVal === '100%'){
+                this.widthVal ='70%';
+                this.floatVal ='right'; 
             }
         },
         renderIssues() {
@@ -168,6 +167,7 @@ export default {
     }
 };
 </script>
+
 <style lang="scss">
 $errorful: rgba(172, 0, 0, 0.845);
 $warningful: rgba(191, 94, 9, 0.845);
@@ -180,6 +180,7 @@ a {
     width: 100%; 
 }
 .readout {
+    width: 100%; 
     margin: auto;
     text-align: justify;
     white-space: pre-line;
@@ -190,32 +191,30 @@ a {
     font-size: 12pt;
     min-height: 40vh !important;
 }
-.sidebar_container {
-    width: 200px; 
-    margin-right: 10px;
+.sidebarContainer {
+    width: 27%; 
+    margin-right: 1%;
     border: 1px; 
     vertical-align: middle; 
-    height: 500px; 
-    padding: 20px;
+    height: 50%; 
+    padding: 1%;
     overflow: scroll; 
     float: left; 
     overflow-x: hidden; 
 }
-.readout_container {
-    float: right; 
-    padding: 10px; 
+.readoutContainer {
+    padding: 1.5%; 
 }
 .wrapper {
     width: 100%; 
     text-align: left; 
     display: inline-block;
 }
-#sidebar_container   {
+#sidebarContainer   {
     font-size: 8pt; 
     text-align: center;
 }
-
 .button {
-    margin-bottom: 15px; 
+    margin-bottom: 0.5%; 
 }
 </style>
