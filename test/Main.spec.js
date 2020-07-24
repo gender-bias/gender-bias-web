@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
-describe('The readout', function() {
+describe('The main component', function() {
     let page;
+    let initialTextAreaWidth;
 
     before(async function() {
         page = await browser.newPage();
@@ -11,10 +12,19 @@ describe('The readout', function() {
         await page.close();
     });
 
+    async function getElementWidth(selector) {
+        const elementStyle = await page.evaluate(sel => {
+            const element = document.querySelector(sel);
+            return JSON.parse(JSON.stringify(getComputedStyle(element)));
+        }, selector);
+        return parseInt(elementStyle.width);
+    }
+
     describe('initially', function() {
 
         it('should show one textarea', async function() {
             await page.waitFor(SEL_TEXTAREA);
+            initialTextAreaWidth = await getElementWidth(SEL_TEXTAREA);
             expect(await page.$$(SEL_TEXTAREA)).to.have.lengthOf(1);
         });
 
@@ -44,7 +54,7 @@ describe('The readout', function() {
         });
 
         it('should show the original text', async function() {
-            const element = await page.$(SEL_FEEDBACK);
+            const element = await page.$(SEL_BLURBS);
             const text = await page.evaluate(element => element.innerText, element);
 
             expect(text).to.include("Some willing", "text");
@@ -85,6 +95,13 @@ describe('The readout', function() {
             expect(btn).to.be.null;
         });
 
-    });
+        it("should change width of textarea", async function() {
+            const currWidth = await getElementWidth(SEL_TEXTAREA)
+            expect(currWidth).to.be.below(await initialTextAreaWidth);
+        });
 
+        it('should make the sidebar inline with the textArea', function() {
+            this.skip('not sure yet how to test this yet');
+        });
+    });
 });
