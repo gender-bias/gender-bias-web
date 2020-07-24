@@ -47,9 +47,9 @@
                                 <Summary v-for="summary in summaries"
                                  @summary-highlighted="highlightedIssue"
                                  :key= "summary.rnd"
-                                 :summary ="summary" 
+                                 :summary ="summary"
                                  :highlight ="summary.title === highlight"
-                                 />      
+                                 />
                             </div> 
                         </div>
                     </span> 
@@ -79,7 +79,8 @@ export default {
             rendered: false,
             sidebarStatus: false,
             widthVal: '100%',
-            floatVal: 'none'
+            floatVal: 'none',
+            highlight: "",
         };
     },
 
