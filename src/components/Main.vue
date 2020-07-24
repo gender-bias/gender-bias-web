@@ -15,8 +15,8 @@
                                     <div class="btn-container">
                                         <button
                                             class="button is-info is-fullwidth submit-button"
-                                            v-on:click="renderIssues" 
-                                            @click = "showSidebar(); hideHeader(); changeWidth()"
+                                            v-on:click="renderIssues(); showSidebar();
+                                            hideHeader(); changeWidth()"
                                         >
                                             Submit
                                         </button>
@@ -25,11 +25,7 @@
                                 <div v-if="rendered">
                                     <button
                                         class="button is-primary is-fullwidth back-button"
-                                        v-on:click="
-                                            () => {
-                                            rendered = false;
-                                            }
-                                        "
+                                        v-on:click=" Again();"
                                     >
                                         &leftarrow; Again!
                                     </button>
@@ -81,6 +77,9 @@ export default {
         };
     },
     methods: {
+        Again() {
+            this.rendered = false; 
+        },
         showSidebar() {
             this.sidebarStatus = true; 
         },
