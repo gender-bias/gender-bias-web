@@ -85,7 +85,7 @@ export default {
     },
 
     methods: {
-        highlightedIssue(issue){
+        highlightIssue(issue){
             this.highlight = issue;
         },
         Again() {

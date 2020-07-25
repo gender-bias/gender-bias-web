@@ -13,8 +13,6 @@
         >
             {{ message.text }}
         </span>
-
-
         <!-- The associated tooltip should be displayed only if 
              there is a problem with the text. -->
         <span v-if="message.issue.problem" id="tooltip">
