@@ -55,10 +55,10 @@ export default {
             return {
                 notice: this.message.issue.problem,
                 negativeBias: this.message.issue
-                    ? this.message.issue.bias == -1
+                    ? this.message.issue.bias < 0
                     : false,
                 positiveBias: this.message.issue 
-                    ? this.message.issue.bias == 1 
+                    ? this.message.issue.bias > 0 
                     : false,
                 hoveringLock: this.hoveringLock,
                 issueHover: this.highlight,
