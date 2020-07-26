@@ -7,9 +7,9 @@
             v-if="message.text"
             v-bind:class="getClasses()"
             style="padding: 0 0.1em;"
-            v-on:mouseover="hovered"
+            v-on:mouseover="onHover"
             v-on:click="hoverLock"
-            v-on:mouseout="unhovered"
+            v-on:mouseout="onUnhover"
         >
             {{ message.text }}
         </span>
@@ -64,11 +64,11 @@ export default {
                 issueHover: this.highlight,
             };
         },
-        hovered() {
+        onHover() {
             this.ishovering = true;
             this.$emit("blurb-highlighted", this.message.issue.category);
         },
-        unhovered() {
+        onUnhover() {
             this.ishovering = false;
             this.$emit("blurb-highlighted", "");
         },
