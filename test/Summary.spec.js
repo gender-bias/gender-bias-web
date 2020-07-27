@@ -43,5 +43,13 @@ describe('The summary', function() {
             const issueHover = await page.waitFor(SEL_ISSUE_HOVER);
             expect(issueHover).to.exist;
         });
+
+        it('corresponding flag should be highlighted', async function() {
+            await page.hover(SEL_ISSUE);
+
+            const element = await page.$(".issueHover");
+            expect(element).to.exist;
+        });
+
     });
 });

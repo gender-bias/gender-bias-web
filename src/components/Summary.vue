@@ -1,10 +1,16 @@
 <template>
-    <div id = 'summary'>
-        <div class = 'issue' v-if = "summary.text.length >= 2" >
-            <p class = 'problem'>  {{summary.title}} </p>
-            <p class = 'summary'>  &nbsp; {{summary.text}} </p>
-        </div> 
-    </div> 
+  <div id="summary">
+    <div
+      @mouseover="hasBeenHighlighted(summary.title)"
+      @mouseout="hasBeenHighlighted('')"
+      class="issue"
+      v-if="summary.text.length >= 2"
+      v-bind:class="{ issueHover: highlight }"
+    >
+      <p class="problem">{{ summary.title }}</p>
+      <p class="summary">&nbsp; {{ summary.text }}</p>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -13,28 +19,37 @@ export default {
     props: {
         summary: {
             type: Object
+        },
+        highlight: {
+            type: Boolean
         }
     },
+
+    methods: {
+        hasBeenHighlighted(title){
+            this.$emit("summary-highlighted", title)
+        }
+    }
 }
 </script>
 
 <style scoped>
 .problem {
     font-weight: 650;
-    margin-bottom: 4px; 
+    margin-bottom: 4px;
 }
 .issue {
-    border: 0.5px solid; 
+    border: 0.5px solid;
     border-color: rgb(98, 176, 240);
     border-radius: 10px;
     font-size: 11.5px;
     padding: 15px;
-    margin-top: 3px; 
-    margin-bottom: 3px; 
+    margin-top: 3px;
+    margin-bottom: 3px;
 }
-.issue:hover {
-    background: rgb(98, 176, 240); 
-    color: white; 
+.issue:hover, .issueHover{
+    background: rgb(98, 176, 240);
+    color: white;
     font-weight: 300;
 }
 </style>
