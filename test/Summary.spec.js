@@ -13,8 +13,8 @@ describe('The summary', function() {
     describe('initially', function() {
 
         it("should not exist", async function() {
-            const summariescontainer = await page.$(SEL_SIDEBAR_CONTAINER);
-            expect(summariescontainer).to.be.null;
+            const summaryContainer = await page.$(SEL_SIDEBAR_CONTAINER);
+            expect(summaryContainer).to.be.null;
         });
     });
 
@@ -28,8 +28,8 @@ describe('The summary', function() {
         });
 
         it('should appear', async function() {
-            const summariescontainer = await page.$(SEL_SIDEBAR_CONTAINER);
-            expect(summariescontainer).to.exist;
+            const summaryContainer = await page.$(SEL_SIDEBAR_CONTAINER);
+            expect(summaryContainer).to.exist;
         });
 
         it('should have correct number of summaries', async function() {
