@@ -101,8 +101,5 @@ describe('The main component', function() {
             expect(currWidth).to.be.below(await initialTextAreaWidth);
         });
 
-        it('should make the sidebar inline with the textArea', function() {
-            this.skip('not sure yet how to test this yet');
-        });
     });
 });
