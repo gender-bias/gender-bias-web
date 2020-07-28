@@ -32,7 +32,7 @@ before(async function() {
     global.SEL_ISSUE_P = '.issue p';
     global.SEL_ISSUE_HOVER = ".issue:hover";
     global.TEXT = "Some willing text";
-    global.PAGE_URL = 'http://localhost:8080';
+    global.PAGE_URL = 'http://localhost:8080/serve-vue-app/';
 });
 
 // close browser and reset global variables
