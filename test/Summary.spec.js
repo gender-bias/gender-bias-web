@@ -27,6 +27,11 @@ describe('The summary', function() {
             await button.click();
         });
 
+        it('should hide header component', async function() {
+            const header = await page.$(HEADING_SELECTOR);
+            expect(header).to.be.null;
+        });
+
         it('should appear', async function() {
             const summaryContainer = await page.$(SEL_SIDEBAR_CONTAINER);
             expect(summaryContainer).to.exist;

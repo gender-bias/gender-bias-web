@@ -11,6 +11,10 @@ before(async function() {
     global.expect = expect;
     global.browser = await puppeteer.launch();
 
+    // Header
+    global.HEADING_SELECTOR = 'h1.title';
+    global.DESCR_SELECTOR = 'h1.title+p';
+
     // Main
     global.SEL_TEXTAREA = 'textarea';
     global.SEL_SUBMIT = '.submit-button';
