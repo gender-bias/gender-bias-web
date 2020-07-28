@@ -1,20 +1,21 @@
 <!-- A Blurb is a span that has styling and a tooltip. -->
 
 <template>
-    <span id = "container">
+    <span style="display: inline" id="container">
         <!-- The text of the blurb -->
-        <span class = "BlurbText" v-if="message.text"
+        <span
+            v-if="message.text"
             v-bind:class="getClasses()"
-            v-on:mouseover="hovered"
+            style="padding: 0 0.1em;"
+            v-on:mouseover="onHover"
             v-on:click="hoverLock"
-            v-on:mouseout="unhovered"
+            v-on:mouseout="onUnhover"
         >
             {{ message.text }}
         </span>
-
         <!-- The associated tooltip should be displayed only if 
              there is a problem with the text. -->
-        <span v-if="message.issue.problem" id = 'tooltip'>
+        <span v-if="message.issue.problem" id="tooltip">
             <div
                 class="tip"
                 v-bind:style="{ top: mouseX }"
@@ -27,7 +28,7 @@
                 </div>
             </div>
         </span>
-    </span>
+  </span>
 </template>
 
 <script>
@@ -35,15 +36,18 @@ export default {
     name: "Blurb",
     props: {
         message: {
-            type: Object
-        }
+            type: Object,
+        },
+        highlight: {
+          type: Boolean,
+        },
     },
     data() {
         return {
             ishovering: false,
             hoveringLock: false,
             mouseX: 30,
-            mouseY: 0
+            mouseY: 0,
         };
     },
     methods: {
@@ -51,19 +55,22 @@ export default {
             return {
                 notice: this.message.issue.problem,
                 negativeBias: this.message.issue
-                    ? this.message.issue.bias == -1
+                    ? this.message.issue.bias < 0
                     : false,
-                positiveBias: this.message.issue
-                    ? this.message.issue.bias == 1
+                positiveBias: this.message.issue 
+                    ? this.message.issue.bias > 0 
                     : false,
-                hoveringLock: this.hoveringLock
+                hoveringLock: this.hoveringLock,
+                issueHover: this.highlight,
             };
         },
-        hovered() {
+        onHover() {
             this.ishovering = true;
+            this.$emit("blurb-highlighted", this.message.issue.category);
         },
-        unhovered() {
+        onUnhover() {
             this.ishovering = false;
+            this.$emit("blurb-highlighted", "");
         },
         hoverLock() {
             this.hoveringLock = !this.hoveringLock;
@@ -71,10 +78,10 @@ export default {
         getPos() {
             return {
                 top: this.mouseY + 200,
-                left: this.mouseX + 200
+                left: this.mouseX + 200,
             };
-        }
-    }
+        },
+    },
 };
 </script>
 
@@ -123,7 +130,7 @@ a {
     transition: background 0.2s;
     background: none;
     cursor: pointer;
-    &:hover {
+    &:hover, &.issueHover {
         background: mix(white, $errorful, 70%);
     }
     &.positiveBias {
@@ -132,7 +139,6 @@ a {
     &.negativeBias {
         border-bottom: 1.5px dotted $errorful;
     }
-
     &.hoveringLock {
         box-shadow: 0 0 0.1em rgba(100, 100, 100, 0.5);
         background: mix(red, lavender, 5%);
