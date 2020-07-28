@@ -49,7 +49,7 @@ if (process.env.NODE_ENV === "test") {
 
         routes() {
             this.timing = 0;
-            this.urlPrefix = 'https://api.biascorrect.org/';
+            this.urlPrefix = 'https://api.biascorrect.org';
             this.post("/check", () => {
                 return RESPONSE;
             })
