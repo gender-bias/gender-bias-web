@@ -5,7 +5,7 @@ describe('A blurb', function() {
 
     before(async function() {
         page = await browser.newPage();
-        await page.goto('http://localhost:8080');
+        await page.goto(PAGE_URL);
         await page.type(SEL_TEXTAREA, TEXT);
 
         const button = await page.$(SEL_SUBMIT);

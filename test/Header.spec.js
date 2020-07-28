@@ -4,7 +4,7 @@ describe('The header', function() {
 
     before(async function() {
         page = await browser.newPage();
-        await page.goto('http://localhost:8080');
+        await page.goto(PAGE_URL);
     });
 
     after(async function() {
