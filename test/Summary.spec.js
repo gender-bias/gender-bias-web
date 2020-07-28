@@ -44,7 +44,7 @@ describe('The summary', function() {
             expect(issueHover).to.exist;
         });
 
-        it('corresponding flag should be highlighted', async function() {
+        it('should highlight corresponding flag', async function() {
             await page.hover(SEL_ISSUE);
 
             const element = await page.$(".issueHover");
