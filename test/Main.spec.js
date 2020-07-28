@@ -12,6 +12,7 @@ describe('The main component', function() {
         await page.close();
     });
 
+    // gets width (type Number) from the CSS of a selector
     async function getElementWidth(selector) {
         const elementStyle = await page.evaluate(sel => {
             const element = document.querySelector(sel);
