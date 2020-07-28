@@ -64,7 +64,7 @@
 import Blurb from "./Blurb";
 import Summary from "./Summary.vue"
 import uniqueId from 'lodash.uniqueid';
-const URL = "http://localhost:5000";
+const URL = "https://api.biascorrect.org/";
 export default {
     name: "Main",
     components: {
