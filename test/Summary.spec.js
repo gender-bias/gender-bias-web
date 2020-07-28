@@ -49,16 +49,11 @@ describe('The summary', function() {
             expect(issueHover).to.exist;
         });
 
-        it('should correspond to flag', function() {
-            this.skip("to-do")
-        });
-
         it('should highlight corresponding flag', async function() {
             await page.hover(SEL_ISSUE);
 
             const element = await page.$(".issueHover");
             expect(element).to.exist;
         });
-
     });
 });

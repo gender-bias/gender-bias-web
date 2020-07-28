@@ -25,6 +25,7 @@ before(async function() {
     global.SEL_CONTAINER = '#container';
     global.SEL_NEGATIVEBIAS = '.negativeBias';
     global.SEL_TOOLTIP = 'span#tooltip h1';
+    global.SEL_TOOLTIP_CONTENT = 'span#tooltip .content'
     global.SEL_NOTICE = '.notice';
 
     // Summary
