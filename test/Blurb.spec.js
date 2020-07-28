@@ -28,7 +28,7 @@ describe('A blurb', function() {
 
     it('should have the style class "negativeBias"', async function() {
         await page.waitFor(SEL_NEGATIVEBIAS);
-        //expect(await page.$$(SEL_NEGATIVEBIAS)).to.have.lengthOf(1);
+        expect(await page.$$(SEL_NEGATIVEBIAS)).to.have.lengthOf(1);
     });
 
     it('should be highlighted on mouseover', async function() {
