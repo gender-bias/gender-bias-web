@@ -3,7 +3,7 @@ describe('A blurb', function() {
     let page;
     before(async function() {
         page = await browser.newPage();
-        await page.goto('http://localhost:8080');
+        await page.goto(PAGE_URL);
         await page.type(SEL_TEXTAREA, TEXT);
 
         const button = await page.$(SEL_SUBMIT);
@@ -23,7 +23,7 @@ describe('A blurb', function() {
     });
     it('should have the style class "negativeBias"', async function() {
         await page.waitFor(SEL_NEGATIVEBIAS);
-        //expect(await page.$$(SEL_NEGATIVEBIAS)).to.have.lengthOf(1);
+        expect(await page.$$(SEL_NEGATIVEBIAS)).to.have.lengthOf(1);
     });
     it('should be highlighted on mouseover', async function() {
         await page.hover(SEL_NOTICE);
@@ -34,14 +34,38 @@ describe('A blurb', function() {
         expect(await page.$(SEL_TOOLTIP)).to.exist;
     });
 
+    it('should highlight corresponding summary on hover', async function() {
+        await page.hover(SEL_NOTICE);
+
+        const element = await page.$("#summary .issueHover");
+        expect(element).to.exist;
+    });
+
+
     describe('The tooltip', function() {
+
+        // the 2nd tooltip (index 1) is tested 
+        // since the 1st is not meant to be displayed
+
         it('should have a title', async function() {
-            await page.waitFor(SEL_TOOLTIP);
-            expect(await page.$(SEL_TOOLTIP)).to.exist;
+            const element = await page.$$(SEL_TOOLTIP);
+            const text = await page.evaluate(el => el.innerText, element[1]);
+            expect(text).to.exist;
         });
         it('should have some further text', async function() {
-            await page.waitFor(SEL_TOOLTIP);
-            expect(await page.$(SEL_TOOLTIP).innerText).to.not.be.null;
+            const element = await page.$$(SEL_TOOLTIP_CONTENT);
+            const text = await page.evaluate(el => el.innerText, element[1]);
+            expect(text).to.exist;
+        });
+
+        it('should correspond to summary', async function() {
+            const blurb = await page.$$(SEL_TOOLTIP);
+            const summary = await page.$(SEL_ISSUE);
+
+            const blurbText = await page.evaluate(el => el.innerText, blurb[1]);
+            const summaryText = await page.evaluate(el => el.innerText, summary);
+
+            expect(summaryText).to.include(blurbText);
         });
     });
 
@@ -69,13 +93,6 @@ describe('A blurb', function() {
             await page.hover(SEL_NOTICE);
             const element = await page.$(SEL_UNFLAGGED + SEL_TOOLTIP);
             expect(element).to.be.null;
-        });
-
-        it('should highlight corresponding summary on hover', async function() {
-            await page.hover(SEL_NOTICE);
-
-            const element = await page.$("#summary .issueHover");
-            expect(element).to.exist;
         });
     });
 });

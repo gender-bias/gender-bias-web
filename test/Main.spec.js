@@ -4,11 +4,13 @@ describe('The main component', function() {
     let initialTextAreaWidth;
     before(async function() {
         page = await browser.newPage();
-        await page.goto('http://localhost:8080');
+        await page.goto(PAGE_URL);
     });
     after(async function() {
         await page.close();
     });
+
+    // gets width (type Number) from the CSS of a selector
     async function getElementWidth(selector) {
         const elementStyle = await page.evaluate(sel => {
             const element = document.querySelector(sel);
@@ -80,9 +82,6 @@ describe('The main component', function() {
         it("should change width of textarea", async function() {
             const currWidth = await getElementWidth(SEL_TEXTAREA)
             expect(currWidth).to.be.below(await initialTextAreaWidth);
-        });
-        it('should make the sidebar inline with the textArea', function() {
-            this.skip('not sure yet how to test this yet');
         });
     });
 });

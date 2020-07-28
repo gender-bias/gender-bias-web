@@ -2,7 +2,7 @@ describe('The summary', function() {
     let page;
     before(async function() {
         page = await browser.newPage();
-        await page.goto('http://localhost:8080');
+        await page.goto(PAGE_URL);
     });
 
     after(async function() {
@@ -11,8 +11,8 @@ describe('The summary', function() {
 
     describe('initially', function() {
         it("should not exist", async function() {
-            const summariescontainer = await page.$(SEL_SIDEBAR_CONTAINER);
-            expect(summariescontainer).to.be.null;
+            const summaryContainer = await page.$(SEL_SIDEBAR_CONTAINER);
+            expect(summaryContainer).to.be.null;
         });
     });
 
@@ -24,9 +24,14 @@ describe('The summary', function() {
             await button.click();
         });
 
+        it('should hide header component', async function() {
+            const header = await page.$(HEADING_SELECTOR);
+            expect(header).to.be.null;
+        });
+
         it('should appear', async function() {
-            const summariescontainer = await page.$(SEL_SIDEBAR_CONTAINER);
-            expect(summariescontainer).to.exist;
+            const summaryContainer = await page.$(SEL_SIDEBAR_CONTAINER);
+            expect(summaryContainer).to.exist;
         });
         it('should have correct number of summaries', async function() {
             await page.waitFor(SEL_ISSUE_P);
@@ -38,12 +43,11 @@ describe('The summary', function() {
             expect(issueHover).to.exist;
         });
 
-        it('corresponding flag should be highlighted', async function() {
+        it('should highlight corresponding flag', async function() {
             await page.hover(SEL_ISSUE);
 
             const element = await page.$(".issueHover");
             expect(element).to.exist;
         });
-
     });
 });
