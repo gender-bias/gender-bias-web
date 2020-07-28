@@ -1,7 +1,7 @@
 <template>
     <div id="app">
         <Header v-if = 'headerStatus'/>     
-        <div class = 'main_content'> 
+        <div class = 'mainContent'> 
             <Main @hideHeader = '_hideHeader(false)'> </Main>
         </div> 
         <Footer />
@@ -25,7 +25,7 @@ export default {
         }
     },
     methods: {
-        _hideHeader(data){
+        _hideHeader(data) {
             this.headerStatus = data;
         }
     }
@@ -41,7 +41,7 @@ export default {
     color: #2c3e50;
     margin: 30px;
 }
-.main_content {
+.mainContent {
      width: 100%; 
 }   
 </style>

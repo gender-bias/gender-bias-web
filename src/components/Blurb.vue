@@ -1,11 +1,10 @@
 <!-- A Blurb is a span that has styling and a tooltip. -->
 
 <template>
-    <span style="display: inline" id = "container">
+    <span id = "container">
         <!-- The text of the blurb -->
-        <span v-if="message.text"
+        <span class = "BlurbText" v-if="message.text"
             v-bind:class="getClasses()"
-            style="padding: 0 0.1em;"
             v-on:mouseover="hovered"
             v-on:click="hoverLock"
             v-on:mouseout="unhovered"
@@ -84,8 +83,15 @@ $errorful: rgba(172, 0, 0, 0.845);
 $warningful: rgba(191, 94, 9, 0.845);
 $goodful: rgba(22, 125, 70, 0.845);
 
+
 a {
     color: #42b1b9;
+}
+#container {
+    display: inline; 
+}
+.BlurbText{
+    padding: 0 0.1em;
 }
 .tip {
     float: right;

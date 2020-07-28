@@ -1,8 +1,8 @@
 <template>
     <div id = 'summary'>
-        <div class = 'issue' v-if = "summary.text.length >= 2" >
+        <div class = 'issue' v-if = "summary.text.length >= 1" >
             <p class = 'problem'>  {{summary.title}} </p>
-            <p class = 'summary'>  &nbsp; {{summary.text}} </p>
+            <p class = 'summary'>  {{summary.text}}  </p>
         </div> 
     </div> 
 </template>

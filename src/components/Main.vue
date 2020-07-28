@@ -3,6 +3,7 @@
         <div class="section">
             <div class="columns">
                 <div class="column is-8 is-offset-2">
+                    <!-- the container that includes the sidebar and the textArea with Blurbs --> 
                     <span class = "wrapper">
                         <div class = "readoutContainer" v-bind:style ="{float: floatVal, width: widthVal}">
                             <div class="readout">
@@ -93,13 +94,11 @@ export default {
             }
         },
         renderIssues() {
-
         /*
         This function employs the back-end server to analyze the text 
         to render issues and summaries. 
         */
             this.rendered = true;
-        
             fetch(`${URL}/check`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -122,14 +121,14 @@ export default {
                     for (const issue of payload.issues) {
                         issues = issues.concat(issue);
                         flags = flags.concat(
-                            issue.flags.map(f => {
+                            issue.flags.map(flag => {
                                 return {
-                                    start: f[0],
-                                    end: f[1],
-                                    category: f[2],
-                                    problem: f[3],
-                                    suggestion: f[4],
-                                    bias: f[5]
+                                    start: flag[0],
+                                    end: flag[1],
+                                    category: flag[2],
+                                    problem: flag[3],
+                                    suggestion: flag[4],
+                                    bias: flag[5]
                                 };
                             })
                         );
