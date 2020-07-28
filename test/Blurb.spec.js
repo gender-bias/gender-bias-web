@@ -86,6 +86,10 @@ describe('A blurb', function() {
             expect(element).to.be.null;
         });
 
+        it('should correspond to summary', function() {
+            this.skip("to-do")
+        });
+
         it('should highlight corresponding summary on hover', async function() {
             await page.hover(SEL_NOTICE);
 
