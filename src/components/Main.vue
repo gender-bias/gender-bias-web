@@ -16,8 +16,7 @@
                                     <div class="btn-container">
                                         <button
                                             class="button is-info is-fullwidth submit-button"
-                                            v-on:click="renderIssues(); showSidebar();
-                                            hideHeader(); changeWidth()"
+                                            v-on:click="renderIssues()"
                                         >
                                             Submit
                                         </button>
@@ -92,12 +91,6 @@ export default {
         },
         Again() {
             this.rendered = false; 
-        },
-        showSidebar() {
-            this.sidebarStatus = true; 
-        },
-        hideHeader() {
-            this.$emit('hideHeader'); 
         },
         changeWidth(){
             if (this.widthVal === '100%'){
@@ -190,6 +183,11 @@ export default {
                     this.messages = this.getMessages(text, flags, messages);
                     this.summaries = this.getSummaries(issues);
                 });
+
+            this.sidebarStatus = true;
+            this.$emit('hideHeader');
+            this.changeWidth();
+
             this.rendered = true;
         }
     }
