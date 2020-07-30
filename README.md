@@ -31,7 +31,7 @@ To set up the project, make sure [`yarn` is installed](https://classic.yarnpkg.c
 yarn install
 ```
 
-### To run the front-send server
+### To run the front-end server
 Once installed, run the front-end server as follows:
 
 ```
@@ -72,8 +72,8 @@ yarn lint
 ```
 
 ## Contributors
-- Mollie Marr @molliem conceieved the project and guided the developement.
-- Jordan Matlesky @j6k4m8 artd the project and mentored the GLAM team.
+- Mollie Marr @molliem conceived the project and guided its developement.
+- Jordan Matlesky @j6k4m8 started the project and mentored the GLAM team.
 - Janet Davis @ProfJanetDavis (Mentor for the GLAMLab Developers, summer 2020)
 - Ahmed Elsayed @elsayeaa (Main Developer, summer 2020)
 - Dylan Wu @dylanjwu (Main Developer, summer 2020)
