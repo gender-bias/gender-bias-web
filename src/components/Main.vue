@@ -25,7 +25,7 @@
                                 <div v-if="rendered">
                                     <button
                                         class="button is-primary is-fullwidth back-button"
-                                        v-on:click=" Again();"
+                                        v-on:click="Again()"
                                     >
                                         &leftarrow; Again!
                                     </button>

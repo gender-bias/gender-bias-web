@@ -52,18 +52,18 @@ You can find the tests in the `test` directory. The `Component.spec.js` files de
 
 ### To write tests
 
-The tests are separated into files by Vue component.
+The tests are divided into files by Vue component.
 
 They employ the Mocha test framework and the Puppeteer and Chai libraries. Puppeteer allows one to simulate user events in the browser and Chai is an assertion library.
 
-When you create a `.spec.js` test file, it will be automatically called by `bootstrap.js` when you run the tests.
+When you create a `.spec.js` test file, it will be called by `bootstrap.js` when you run the tests.
 
 In the test files, `describe` blocks demarcate the tests by state, such as the page after the opening of the page, the clicking of a button, the typing of text into the textarea,
 or hovering over a style class. These state-changing events are handled with `before` and `after` blocks. 
 
-It is important to know that the tests are run asynchronously, which is indicated by the `async` and `await` keywords. This is because we don't know how long each test will take to complete, so it is more efficient for them to run concurrently. The `await` keyword tells the line to run only after the previous asynchronous work within the function has finished running, and  can only be used in functions that are prefaced with `async`.
+The tests run asynchronously, which is indicated by the `async` and `await` keywords. This is because we don't know how long each test will take to complete, so it is more efficient for them to run concurrently. The `await` keyword tells the line to run only after the previous asynchronous work within the function has finished running, and can only be used in functions that are prefaced with `async`.
 
-The convention is to define variables for style classes necessary for testing in `bootstrap.js`; again, these are organized by component.
+The convention is to define variables for style-class-selectors necessary for testing in `bootstrap.js`; again, these are organized by component.
 
 ### To lint and fix files
 Run 
