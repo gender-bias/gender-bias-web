@@ -86,12 +86,15 @@ export default {
     },
 
     methods: {
+
         highlightIssue(issue){
             this.highlightStr = issue;
         },
+
         Again() {
             this.rendered = false; 
         },
+
         changeWidth(){
             if (this.widthVal === '100%'){
                 this.widthVal ='70%';
@@ -112,13 +115,14 @@ export default {
 
         mapFlag(issue){
             return issue.flags.map(f => {
-                return {start: f[0],
-                        end: f[1],
-                        category: f[2],
-                        problem: f[3],
-                        suggestion: f[4],
-                        bias: f[5]
-                       };
+                return {
+                    start: f[0],
+                    end: f[1],
+                    category: f[2],
+                    problem: f[3],
+                    suggestion: f[4],
+                    bias: f[5]
+                };
             });
         },
 

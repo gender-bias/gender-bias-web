@@ -1,8 +1,8 @@
 <template>
   <div id="summary">
     <div
-      @mouseover="hasBeenHighlighted(summary.title)"
-      @mouseout="hasBeenHighlighted('')"
+      @mouseover="onHighlight(summary.title)"
+      @mouseout="onHighlight('')"
       class="issue"
       v-if="summary.text.length >= 2"
       v-bind:class="{ issueHover: highlight }"
@@ -26,7 +26,7 @@ export default {
     },
 
     methods: {
-        hasBeenHighlighted(title){
+        onHighlight(title){
             this.$emit("summary-highlighted", title)
         }
     }
