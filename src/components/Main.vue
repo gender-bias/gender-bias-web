@@ -16,7 +16,7 @@
                                     <div class="btn-container">
                                         <button
                                             class="button is-info is-fullwidth submit-button"
-                                            v-on:click="renderIssues()"
+                                            v-on:click="render()"
                                         >
                                             Submit
                                         </button>
@@ -93,6 +93,13 @@ export default {
 
         onClickAgain() {
             this.rendered = false; 
+        },
+
+        render() {
+            this.renderIssues();
+            this.sidebarStatus = true;
+            this.$emit('hideHeader');
+            this.changeWidth();
         },
 
         changeWidth(){
