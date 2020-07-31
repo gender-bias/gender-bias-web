@@ -25,7 +25,7 @@
                                 <div v-if="rendered">
                                     <button
                                         class="button is-primary is-fullwidth back-button"
-                                        v-on:click="Again()"
+                                        v-on:click="onClickAgain()"
                                     >
                                         &leftarrow; Again!
                                     </button>
@@ -91,7 +91,7 @@ export default {
             this.highlightStr = issue;
         },
 
-        Again() {
+        onClickAgain() {
             this.rendered = false; 
         },
 
