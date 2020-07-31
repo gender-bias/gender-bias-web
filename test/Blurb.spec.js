@@ -45,27 +45,18 @@ describe('A blurb', function() {
     describe('The tooltip', function() {
 
         // the 2nd tooltip (index 1) is tested 
-        // since the 1st is not meant to be displayed
+        // since the 1st tooltip is not meant to be displayed
 
         it('should have a title', async function() {
             const element = await page.$$(SEL_TOOLTIP);
             const text = await page.evaluate(el => el.innerText, element[1]);
             expect(text).to.exist;
         });
+
         it('should have some further text', async function() {
             const element = await page.$$(SEL_TOOLTIP_CONTENT);
             const text = await page.evaluate(el => el.innerText, element[1]);
             expect(text).to.exist;
-        });
-
-        it('should correspond to summary', async function() {
-            const blurb = await page.$$(SEL_TOOLTIP);
-            const summary = await page.$(SEL_ISSUE);
-
-            const blurbText = await page.evaluate(el => el.innerText, blurb[1]);
-            const summaryText = await page.evaluate(el => el.innerText, summary);
-
-            expect(summaryText).to.include(blurbText);
         });
     });
 

@@ -24,7 +24,7 @@ describe('The summary', function() {
             await button.click();
         });
 
-        it('should hide header component', async function() {
+        it('should hide the header component', async function() {
             const header = await page.$(HEADING_SELECTOR);
             expect(header).to.be.null;
         });
@@ -43,7 +43,7 @@ describe('The summary', function() {
             expect(issueHover).to.exist;
         });
 
-        it('should highlight corresponding flag', async function() {
+        it('should highlight the corresponding flag', async function() {
             await page.hover(SEL_ISSUE);
 
             const element = await page.$(".issueHover");
