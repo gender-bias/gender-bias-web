@@ -1,4 +1,5 @@
-<!-- A Blurb is a span that has styling and a tooltip. -->
+<!-- A Blurb is a span of text which, if flagged, will have styling and a tooltip. -->
+<!-- Every text snippet in Main is contained in a Blurb. -->
 
 <template>
     <span style="display: inline" id="container">
