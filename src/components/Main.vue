@@ -3,6 +3,7 @@
         <div class="section">
             <div class="columns">
                 <div class="column is-8 is-offset-2">
+                    <!-- the container that includes the sidebar and the textArea with Blurbs --> 
                     <span class = "wrapper">
                         <div class = "readoutContainer" v-bind:style ="{float: floatVal, width: widthVal}">
                             <div class="readout">
@@ -15,8 +16,7 @@
                                     <div class="btn-container">
                                         <button
                                             class="button is-info is-fullwidth submit-button"
-                                            v-on:click="renderIssues(); showSidebar();
-                                            hideHeader(); changeWidth()"
+                                            v-on:click="render()"
                                         >
                                             Submit
                                         </button>
@@ -25,7 +25,7 @@
                                 <div v-if="rendered">
                                     <button
                                         class="button is-primary is-fullwidth back-button"
-                                        v-on:click=" Again();"
+                                        v-on:click="onClickAgain()"
                                     >
                                         &leftarrow; Again!
                                     </button>
@@ -86,18 +86,22 @@ export default {
     },
 
     methods: {
+
         highlightIssue(issue){
             this.highlightStr = issue;
         },
-        Again() {
+
+        onClickAgain() {
             this.rendered = false; 
         },
-        showSidebar() {
-            this.sidebarStatus = true; 
+
+        render() {
+            this.renderIssues();
+            this.sidebarStatus = true;
+            this.$emit('hideHeader');
+            this.changeWidth();
         },
-        hideHeader() {
-            this.$emit('hideHeader'); 
-        },
+
         changeWidth(){
             if (this.widthVal === '100%'){
                 this.widthVal ='70%';
@@ -118,13 +122,14 @@ export default {
 
         mapFlag(issue){
             return issue.flags.map(f => {
-                return {start: f[0],
-                        end: f[1],
-                        category: f[2],
-                        problem: f[3],
-                        suggestion: f[4],
-                        bias: f[5]
-                       };
+                return {
+                    start: f[0],
+                    end: f[1],
+                    category: f[2],
+                    problem: f[3],
+                    suggestion: f[4],
+                    bias: f[5]
+                };
             });
         },
 
@@ -189,6 +194,11 @@ export default {
                     this.messages = this.getMessages(text, flags, messages);
                     this.summaries = this.getSummaries(issues);
                 });
+
+            this.sidebarStatus = true;
+            this.$emit('hideHeader');
+            this.changeWidth();
+
             this.rendered = true;
         }
     }

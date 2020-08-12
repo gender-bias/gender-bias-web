@@ -1,4 +1,5 @@
-<!-- A Blurb is a span that has styling and possibly a tooltip. -->
+<!-- A Blurb is a span of text which, if flagged, will have styling and a tooltip. -->
+<!-- Every text snippet in Main is contained in a Blurb. -->
 
 <template>
     <span style="display: inline" id="container">
@@ -90,8 +91,15 @@ $errorful: rgba(172, 0, 0, 0.845);
 $warningful: rgba(191, 94, 9, 0.845);
 $goodful: rgba(22, 125, 70, 0.845);
 
+
 a {
     color: #42b1b9;
+}
+#container {
+    display: inline; 
+}
+.BlurbText{
+    padding: 0 0.1em;
 }
 .tip {
     float: right;

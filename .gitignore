@@ -154,6 +154,7 @@ dist
 ### Vuejs ###
 # Recommended template: Node.gitignore
 
+docs/
 dist/
 npm-debug.log
 yarn-error.log

@@ -31,7 +31,7 @@ To set up the project, make sure [`yarn` is installed](https://classic.yarnpkg.c
 yarn install
 ```
 
-### To run the front-send server
+### To run the front-end server
 Once installed, run the front-end server as follows:
 
 ```
@@ -50,6 +50,21 @@ To run a single test, run `yarn test --grep 'test name'`, specifying the name of
 
 You can find the tests in the `test` directory. The `Component.spec.js` files depend on `bootstrap.js`.
 
+### To write tests
+
+The tests are divided into files by Vue component.
+
+They employ the Mocha test framework and the Puppeteer and Chai libraries. Puppeteer allows one to simulate user events in the browser and Chai is an assertion library.
+
+When you create a `.spec.js` test file, it will be called by `bootstrap.js` when you run the tests.
+
+In the test files, `describe` blocks demarcate the tests by state, such as the page after the opening of the page, the clicking of a button, the typing of text into the textarea,
+or hovering over a style class. These state-changing events are handled with `before` and `after` blocks. 
+
+The tests run asynchronously, which is indicated by the `async` and `await` keywords. This is because we don't know how long each test will take to complete, so it is more efficient for them to run concurrently. The `await` keyword tells the line to run only after the previous asynchronous work within the function has finished running, and can only be used in functions that are prefaced with `async`.
+
+The convention is to define variables for style-class-selectors necessary for testing in `bootstrap.js`; again, these are organized by component.
+
 ### To lint and fix files
 Run 
 ```
@@ -57,11 +72,11 @@ yarn lint
 ```
 
 ## Contributors
-- Mollie Marr @molliem conceieved the project and guided the developement.
-- Jordan Matlesky @j6k4m8 artd the project and mentored the GLAM team.
+- Mollie Marr @molliem conceived the project and guided its developement.
+- Jordan Matlesky @j6k4m8 started the project and mentored the GLAM team.
 - Janet Davis @ProfJanetDavis (Mentor for the GLAMLab Developers, summer 2020)
 - Ahmed Elsayed @elsayeaa (Main Developer, summer 2020)
 - Dylan Wu @dylanjwu (Main Developer, summer 2020)
--  Kalilou Ali Kadiri @kaliloua7 (Main Developer, summer 2020)
+- Kalilou Ali Kadiri @kaliloua7 (Main Developer, summer 2020)
 - Nidhi Jaltare @nidhi2509 (Main Developer, summer 2020)
-- Zoë Hill @Life1999 (Main Developer, summer 2020
+- Zoë Hill @Life1999 (Main Developer, summer 2020)

@@ -30,9 +30,7 @@ p {
 .title {
     margin-bottom: 20px;
 }
-
-.title,
-.subtitle {
+.title, .subtitle {
     text-align: center;
 }
 .container {
