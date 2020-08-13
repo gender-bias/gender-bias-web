@@ -3,7 +3,7 @@ import App from './App.vue'
 import "bulma/css/bulma.css";
 import { Server } from 'miragejs'
 
-const RESPONSE = {
+const RESPONSE1 = {
     'issues': [{
         'flags': [],
         'name': 'Unnecessarily Gendered Words',
@@ -44,14 +44,38 @@ const RESPONSE = {
     'text': 'Some willing text'
 };
 
+const RESPONSE2 = {
+    'issues': [{
+        'flags': [
+            [0,5, 'Beginning', 'Flags should work at the beginning of the text',
+                'See if this flag works', -1.0
+            ],
+            [20,25,'Middle', 'Flags should work in the middle of the text',
+            'See if this flag works', -1.0
+            ],
+            [20,25,'End', 'Flags should work at the end of the text',
+            'See if this flag works', -1.0
+            ]
+        ],
+        'name': 'Flag position test',
+        'summary': 'Flags should work correctly regardles of where they appear in the text.'
+    }],
+    'text': 'Start. There is a flag in the middle of the text. End.'
+};
+
 if (process.env.NODE_ENV === "test") {
     new Server({
 
         routes() {
             this.timing = 0;
             this.urlPrefix = 'https://api.biascorrect.org';
-            this.post("/check", () => {
-                return RESPONSE;
+            this.post("/check", (schema, request) => {
+                let text = JSON.parse(request.requestBody).text;
+                if (text.includes('willing')) {
+                    return RESPONSE1;
+                } else {
+                    return RESPONSE2;
+                }
             })
         }
     })
