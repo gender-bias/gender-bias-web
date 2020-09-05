@@ -47,20 +47,39 @@ const RESPONSE1 = {
 const RESPONSE2 = {
     'issues': [{
         'flags': [
-            [0,5, 'Beginning', 'Flags should work at the beginning of the text',
+            [0, 5, 'Beginning', 'Flags should work at the beginning of the text',
                 'See if this flag works', -1.0
             ],
-            [20,25,'Middle', 'Flags should work in the middle of the text',
-            'See if this flag works', -1.0
+            [18, 22, 'Middle', 'Flags should work in the middle of the text',
+                'See if this flag works', -1.0
             ],
-            [20,25,'End', 'Flags should work at the end of the text',
-            'See if this flag works', -1.0
+            [50, 53, 'End', 'Flags should work at the end of the text',
+                'See if this flag works', -1.0
             ]
         ],
         'name': 'Flag position test',
         'summary': 'Flags should work correctly regardles of where they appear in the text.'
     }],
     'text': 'Start. There is a flag in the middle of the text. End.'
+};
+
+const RESPONSE3 = {
+    'issues': [{
+        'flags': [
+            [7, 14, 'Beginning', 'Flags should work at the beginning of the text',
+                'See if this flag works', -1.0
+            ],
+            [21, 28, 'Middle', 'Flags should work in the middle of the text',
+                'See if this flag works', -1.0
+            ],
+            [37, 44, 'End', 'Flags should work at the end of the text',
+                'See if this flag works', -1.0
+            ]
+        ],
+        'name': 'Flag position test',
+        'summary': 'Flags should work correctly regardles of where they appear in the text.'
+    }],
+    'text': 'She is willing. I am willing. She is willing.'
 };
 
 if (process.env.NODE_ENV === "test") {
@@ -73,6 +92,8 @@ if (process.env.NODE_ENV === "test") {
                 let text = JSON.parse(request.requestBody).text;
                 if (text.includes('willing')) {
                     return RESPONSE1;
+                } else if (text.includes('She')) {
+                    return RESPONSE3;
                 } else {
                     return RESPONSE2;
                 }
