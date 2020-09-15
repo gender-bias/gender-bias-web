@@ -110,7 +110,6 @@ export default {
         },
 
         async fetchJSON(){
-            console.log(this.inputText);
             const res = await fetch(`${URL}/check`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -135,41 +134,36 @@ export default {
         },
 
         getFlags(issues){
-            console.log(issues)
             let flags = [
                 {   
                     start: 0,
                     end: 0,
                     category: "",
-                    problem: "", 
-                    suggestions: "", 
-                    bias: ""
+                    problem: ""
                 }
             ];
-
-            let firstFlag = issues[0].flags;
-            if(firstFlag.length > 0 && firstFlag[0][0] === 0){
-                flags = [];
-            }
 
             issues.map(issue => 
                 flags = flags.concat(this.mapFlag(issue)));
             return flags;
         },
 
-        getBlurbs(text, flags) {
-
+         getBlurbs(text, flags) {
             //splits and demarcates text into blurbs
             //using the start and end indexes of flags
-
-            //solves problem of 'undefined' if flag at end of text
-            text += " "; 
+            
             let textArray = text.split("");
             for (const [i, flag] of flags.entries()) {
+                textArray[flag.end] = textArray[flag.end]  === ' ' || textArray[flag.end] === '\n' 
+                ? "[!]||||" + textArray[flag.end]
+                : textArray[flag.end] + "[!]||||";
                 textArray[flag.start] = `[!]||${i}||` + textArray[flag.start];
-                textArray[flag.end] = "[!]||||" + textArray[flag.end];
             }
-            return textArray.join("").split("[!]"); 
+            textArray = textArray.join("").split("[!]"); 
+            if (textArray[-1] === '||||undefined'){
+                textArray.pop(); 
+            }
+            return textArray; 
         },
 
         getMessages(text, flags, messages){
@@ -201,11 +195,8 @@ export default {
                     const flags = this.getFlags(issues);
                     const text = payload.text;
                     const messages = this.getBlurbs(text, flags);
-                    console.log(messages);
                
                     this.messages = this.getMessages(text, flags, messages);
-                    console.log(text)
-                    console.log(this.messages);
                     this.summaries = this.getSummaries(issues);
                 });
 
