@@ -143,6 +143,11 @@ export default {
                 }
             ];
 
+            let firstFlag = issues[0].flags;
+            if(firstFlag.length > 0 && firstFlag[0][0] === 0){
+                flags = [];
+            }
+
             issues.map(issue => 
                 flags = flags.concat(this.mapFlag(issue)));
             return flags;
