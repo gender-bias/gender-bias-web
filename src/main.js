@@ -63,6 +63,8 @@ const RESPONSE2 = {
     'text': 'Start. There is a flag in the middle of the text. End.'
 };
 
+
+
 const RESPONSE3 = {
     'issues': [{
         'flags': [
@@ -81,6 +83,28 @@ const RESPONSE3 = {
     }],
     'text': 'She is willing. I am willing. She is willing.'
 };
+
+// const RESPONSE4 = {
+//     'issues': [{
+//         'flags': [
+//             [8, 15, 'Beginning', 'Flags should work at the beginning of the text',
+//                 'See if this flag works', -1.0
+//             ],
+//             [27, 34, 'Middle', 'Flags should work in the middle of the text',
+//                 'See if this flag works', -1.0
+//             ],
+//             [44, 51, 'Middle', 'Flags should work at the end of the text',
+//                 'See if this flag works', -1.0
+//             ],
+//             [67, 74, 'End', 'Flags should work at the end of the text',
+//                 'See if this flag works', -1.0
+//             ]
+//         ],
+//         'name': 'Flag position test',
+//         'summary': 'Flags should work correctly regardles of where they appear in the text.'
+//     }],
+//     'text': 'She is  willing to         willing          willing,               willing.'
+// };
 
 if (process.env.NODE_ENV === "test") {
     new Server({

@@ -155,17 +155,26 @@ export default {
 
          getBlurbs(text, flags) {
             //splits and demarcates text into blurbs
-            //using the start and end indexes of flags
-            
+            //using the start and end indices of flags
             let textArray = text.split("");
+            // Create an empty element at the beginning of the text so, 
+            // textArray[0] is an empty element instead of the beginning of the text.
+            textArray.unshift(""); 
+            // Modifies the text into flags with their relevance
             for (const [i, flag] of flags.entries()) {
-                textArray[flag.end] = textArray[flag.end]  === ' ' || textArray[flag.end] === '\n' 
+                // Checks if the flag is in the middle, so it includes 
+                // the flagged word's punctuation
+                textArray[flag.end] = textArray[flag.end]  === ' ' || textArray[flag.end] === '\n'
                 ? "[!]||||" + textArray[flag.end]
                 : textArray[flag.end] + "[!]||||";
+                // Adds the relevance of the flag. 
                 textArray[flag.start] = `[!]||${i}||` + textArray[flag.start];
             }
+            // Splits the text into an array of flags
             textArray = textArray.join("").split("[!]"); 
-            if (textArray[-1] === '||||undefined'){
+            textArray.shift(); 
+            // Removes the last element if it is empty or undefined
+            if (textArray[-1] === '||||undefined' || textArray[-1] === '||||'){
                 textArray.pop(); 
             }
             return textArray; 
@@ -200,7 +209,7 @@ export default {
                     const flags = this.getFlags(issues);
                     const text = payload.text;
                     const messages = this.getBlurbs(text, flags);
-               
+                    console.log(messages)
                     this.messages = this.getMessages(text, flags, messages);
                     this.summaries = this.getSummaries(issues);
                 });
