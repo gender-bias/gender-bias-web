@@ -3,7 +3,7 @@ import App from './App.vue'
 import "bulma/css/bulma.css";
 import { Server } from 'miragejs'
 
-const RESPONSE1 = {
+const detectFlag = {
     'issues': [{
         'flags': [],
         'name': 'Unnecessarily Gendered Words',
@@ -44,7 +44,7 @@ const RESPONSE1 = {
     'text': 'Some willing text'
 };
 
-const RESPONSE2 = {
+const detectStartAndEnd = {
     'issues': [{
         'flags': [
             [0, 5, 'Beginning', 'Flags should work at the beginning of the text',
@@ -65,7 +65,7 @@ const RESPONSE2 = {
 
 
 
-const RESPONSE3 = {
+const detectPunctuation = {
     'issues': [{
         'flags': [
             [7, 14, 'Beginning', 'Flags should work at the beginning of the text',
@@ -84,27 +84,6 @@ const RESPONSE3 = {
     'text': 'She is willing. I am willing. She is willing.'
 };
 
-// const RESPONSE4 = {
-//     'issues': [{
-//         'flags': [
-//             [8, 15, 'Beginning', 'Flags should work at the beginning of the text',
-//                 'See if this flag works', -1.0
-//             ],
-//             [27, 34, 'Middle', 'Flags should work in the middle of the text',
-//                 'See if this flag works', -1.0
-//             ],
-//             [44, 51, 'Middle', 'Flags should work at the end of the text',
-//                 'See if this flag works', -1.0
-//             ],
-//             [67, 74, 'End', 'Flags should work at the end of the text',
-//                 'See if this flag works', -1.0
-//             ]
-//         ],
-//         'name': 'Flag position test',
-//         'summary': 'Flags should work correctly regardles of where they appear in the text.'
-//     }],
-//     'text': 'She is  willing to         willing          willing,               willing.'
-// };
 
 if (process.env.NODE_ENV === "test") {
     new Server({
@@ -115,11 +94,11 @@ if (process.env.NODE_ENV === "test") {
             this.post("/check", (schema, request) => {
                 let text = JSON.parse(request.requestBody).text;
                 if (text.includes('willing')) {
-                    return RESPONSE1;
+                    return detectFlag;
                 } else if (text.includes('She')) {
-                    return RESPONSE3;
+                    return detectPunctuation;
                 } else {
-                    return RESPONSE2;
+                    return detectStartAndEnd;
                 }
             })
         }

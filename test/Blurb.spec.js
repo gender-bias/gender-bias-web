@@ -47,7 +47,7 @@ describe('A blurb', function() {
             page = await browser.newPage();
             await page.goto(PAGE_URL);
             await page.type(SEL_TEXTAREA, 'Start. There is a flag in the middle of the text. End.');
-    
+
             const button = await page.$(SEL_SUBMIT);
             await button.click();
         });
@@ -57,10 +57,18 @@ describe('A blurb', function() {
         it('should get different text', async function() {
             const element = await page.$(SEL_BLURBS);
             const text = await page.evaluate(element => element.innerText, element);
-            expect(text).to.include("middle");        
+            expect(text).to.include("middle");
         });
-        it('at the start of the text.');
-        it('at the end of the text.');
+        it('at the start of the text.', async function() {
+            const element = await page.$$(SEL_NOTICE);
+            const text = await page.evaluate(element => element.innerText, element[0]);
+            expect(text).to.eql("Start ");
+        });
+        it('at the end of the text.', async function() {
+            const element = await page.$$(SEL_NOTICE);
+            const text = await page.evaluate(element => element.innerText, element[2]);
+            expect(text).to.eql("End ");
+        })
     });
 
     describe('The tooltip', function() {
@@ -108,4 +116,3 @@ describe('A blurb', function() {
         });
     });
 });
-
