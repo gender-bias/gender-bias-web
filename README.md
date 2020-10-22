@@ -16,8 +16,9 @@ This project is currently under active development by members of [GLAM Lab at Wh
 * [Yarn](https://classic.yarnpkg.com/en/docs/) for package management.
 
 ## Installation and Usage
+### Linux or MacOS 
 
-### To install the back-end 
+#### To install the back-end 
 ```
 git clone https://github.com/gender-bias/gender-bias
 cd gender-bias
@@ -25,19 +26,34 @@ pip3 install -e .
 ```
 NOTE: The last line in the above snippet installs this library in "editable" mode, which is probably fine while the library is in a state of flux.
 
-### To install packages 
+#### To install packages 
 To set up the project, make sure [`yarn` is installed](https://classic.yarnpkg.com/en/docs/install/#mac-stable) and then use it to install the packages for this project:
 ```
 yarn install
 ```
 
-### To run the front-end server
+### Windows
+#### Necessary Packages before installing the project
+Make sure you have [`NodeJS` is installed on your computer](https://nodejs.org/en/download/). `npm` comes with NodeJS, so you don't have to install `npm` on its own. 
+You can also install [`yarn`](https://classic.yarnpkg.com/en/docs/install/#windows-stable). Finally, make sure you have [`pip3`](https://vgkits.org/blog/pip3-windows-howto/) on your computer, and you have [Python 3](https://www.python.org/downloads/windows/). 
+#### Installing the back-end
+1. Clone the backend repoistory through an IDE or from Github. 
+2. Using windows terminal, 
+```
+cd  gender-bias 
+pip3 install -e .  
+```
+
+### To run the front-end server (Windows/MacOS/Linux)
 Once installed, run the front-end server as follows:
 
 ```
 yarn serve 
 ```
-
+OR a
+```
+npm run server
+```
 The server runs at `http://localhost:8080` by default.
 
 ### To run tests
