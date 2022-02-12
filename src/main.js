@@ -3,7 +3,7 @@ import App from './App.vue'
 import "bulma/css/bulma.css";
 import { Server } from 'miragejs'
 
-const RESPONSE = {
+const detectFlag = {
     'issues': [{
         'flags': [],
         'name': 'Unnecessarily Gendered Words',
@@ -44,14 +44,62 @@ const RESPONSE = {
     'text': 'Some willing text'
 };
 
+const detectStartAndEnd = {
+    'issues': [{
+        'flags': [
+            [0, 5, 'Beginning', 'Flags should work at the beginning of the text',
+                'See if this flag works', -1.0
+            ],
+            [18, 22, 'Middle', 'Flags should work in the middle of the text',
+                'See if this flag works', -1.0
+            ],
+            [50, 53, 'End', 'Flags should work at the end of the text',
+                'See if this flag works', -1.0
+            ]
+        ],
+        'name': 'Flag position test',
+        'summary': 'Flags should work correctly regardles of where they appear in the text.'
+    }],
+    'text': 'Start. There is a flag in the middle of the text. End.'
+};
+
+
+
+const detectPunctuation = {
+    'issues': [{
+        'flags': [
+            [7, 14, 'Beginning', 'Flags should work at the beginning of the text',
+                'See if this flag works', -1.0
+            ],
+            [21, 28, 'Middle', 'Flags should work in the middle of the text',
+                'See if this flag works', -1.0
+            ],
+            [37, 44, 'End', 'Flags should work at the end of the text',
+                'See if this flag works', -1.0
+            ]
+        ],
+        'name': 'Flag position test',
+        'summary': 'Flags should work correctly regardles of where they appear in the text.'
+    }],
+    'text': 'She is willing. I am willing. She is willing.'
+};
+
+
 if (process.env.NODE_ENV === "test") {
     new Server({
 
         routes() {
             this.timing = 0;
             this.urlPrefix = 'https://api.biascorrect.org';
-            this.post("/check", () => {
-                return RESPONSE;
+            this.post("/check", (schema, request) => {
+                let text = JSON.parse(request.requestBody).text;
+                if (text.includes('willing')) {
+                    return detectFlag;
+                } else if (text.includes('She')) {
+                    return detectPunctuation;
+                } else {
+                    return detectStartAndEnd;
+                }
             })
         }
     })
