@@ -17,7 +17,7 @@
         "core-js": "^3.6.5",
         "lodash.uniqueid": "^4.0.1",
         "miragejs": "^0.1.40",
-        "mocha": "^8.0.1",
+        "mocha": "^8.4.0",
         "node-sass": "^7.0.0",
         "puppeteer": "^4.0.1",
         "sass-loader": "^8.0.2",
